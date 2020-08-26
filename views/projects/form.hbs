@@ -1,0 +1,77 @@
+{{#if project}}
+  <form action="/projects/{{project.id}}/edit" method="POST" enctype="multipart/form-data">
+{{else}}
+  <form action="/projects" method="POST" enctype="multipart/form-data">
+{{/if}}
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input value="{{project.name}}" name="name" type="text" class="form-control {{#if error.name }}is-invalid{{/if}}" id="name">
+
+    {{#if error.name}}
+      <div class="invalid-feedback">
+        {{error.name.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea rows="5" type="text" class="form-control {{#if error.description }}is-invalid{{/if}}" name="description" id="description">{{project.description}}</textarea>
+
+    {{#if error.description}}
+      <div class="invalid-feedback">
+        {{error.description.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="url">URL</label>
+    <input value="{{project.url}}" type="text" class="form-control {{#if error.url }}is-invalid{{/if}}" id="url" name="url">
+
+    {{#if error.url}}
+      <div class="invalid-feedback">
+        {{error.url.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="github">Github</label>
+    <input value="{{project.github}}" type="text" class="form-control {{#if error.github }}is-invalid{{/if}}" id="github" name="github">
+
+    {{#if error.github}}
+      <div class="invalid-feedback">
+        {{error.github.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="github">Image</label>
+    <input value="{{project.image}}" type="file" class="form-control-file {{#if error.image }}is-invalid{{/if}}" id="image" name="image">
+
+    {{#if error.image}}
+      <div class="invalid-feedback">
+        {{error.image.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="github">Staff</label>
+    <select class="form-control {{#if error.staff }}is-invalid{{/if}}" name="staff">
+      {{#each staffUsers as |staff|}}
+        <option value="{{staff._id}}">{{staff.name}}</option>
+      {{/each}}
+    </select>
+
+    {{#if error.staff}}
+      <div class="invalid-feedback">
+        {{error.staff.message}}
+      </div>
+    {{/if}}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

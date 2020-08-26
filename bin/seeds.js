@@ -1,47 +1,103 @@
-// Seeds file that remove all users and create 2 new users
+require('dotenv').config();
+require("../config/db.config");
 
-// To execute this seed, run from the root of the project
-// $ node bin/seeds.js
+const User = require('../models/user.model')
+const Comment = require('../models/comment.model')
+const Project = require('../models/project.model')
+const Like = require('../models/like.model');
+const faker = require('faker');
 
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
+const users = []
 
-const bcryptSalt = 10;
-
-mongoose
-  .connect('mongodb://localhost/adoptme', {useNewUrlParser: true})
-  .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+function createUser(staff = false) {
+  const user = new User({
+    name: faker.name.findName(),
+    email: faker.internet.email(),
+    avatar: faker.internet.avatar(),
+    password: '123456789A',
+    bio: faker.lorem.paragraph(),
+    staff,
+    avtivation: {
+      active: true
+    }
   })
-  .catch(err => {
-    console.error('Error connecting to mongo', err)
-  });
 
-let users = [
-  {
-    username: "alice",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
-  },
-  {
-    username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-  }
-]
+  return user.save()
+}
 
-User.deleteMany()
-.then(() => {
-  return User.create(users)
-})
-.then(usersCreated => {
-  console.log(`${usersCreated.length} users created with the following id:`);
-  console.log(usersCreated.map(u => u._id));
-})
-.then(() => {
-  // Close properly the connection to Mongoose
-  mongoose.disconnect()
-})
-.catch(err => {
-  mongoose.disconnect()
-  throw err
-})
+function createProject(user, staff) {
+  const project = new Project({
+    name: faker.company.companyName(),
+    description: faker.lorem.paragraph(),
+    url: faker.internet.url(),
+    github: faker.internet.url(),
+    image: faker.image.image(),
+    author: user._id,
+    staff: staff._id
+  })
+
+  return project.save()
+}
+
+function createComment(project) {
+  const comment = new Comment({
+    text: faker.lorem.paragraph(),
+    user: users[Math.floor(Math.random() * users.length)]._id,
+    project: project._id
+  })
+
+  return comment.save()
+}
+
+function createLike(project ) {
+  const like = new Like({
+    user: users[Math.floor(Math.random() * users.length)]._id,
+    project: project._id
+  })
+
+  return like.save()
+}
+
+function restoreDatabase() {
+  return Promise.all([
+    User.deleteMany({}),
+    Comment.deleteMany({}),
+    Project.deleteMany({}),
+    Like.deleteMany({})
+  ])
+}
+
+function seeds() {
+  restoreDatabase()
+    .then(() => {
+      console.log('Database restored!')
+
+      createUser(true)
+        .then(staff => {
+          console.log(`STAFF - ${staff.email}`)
+          console.log()
+
+          for (let i = 0; i < 100; i++) {
+            createUser()
+              .then(user => {
+                console.log(user.email)
+
+                users.push(user)
+
+                for (let j = 0; j < 3; j++) {
+                  createProject(user, staff)
+                    .then(project => {
+                      for (let k = 0; k < 10; k++) {
+                        createComment(project)
+                        createLike(project)
+                      }
+                    })
+                }
+              })
+          }
+        })
+    })
+
+}
+
+seeds()

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/iron-summer-project';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/adoptme';
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
   .then(() => console.info(`Successfully connected to the database ${MONGODB_URI}`))

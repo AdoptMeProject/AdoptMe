@@ -1,35 +1,42 @@
 {
   "name": "adoptme",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "DEBUG=adoptme:* nodemon ./bin/www",
-    "dev-windows": "nodemon ./bin/www"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon -e hbs,js,css app.js",
+    "seeds": "node ./bin/seeds"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdoptMeProject/AdoptMe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdoptMeProject/AdoptMe/issues"
+  },
+  "homepage": "https://github.com/AdoptMeProject/AdoptMe#readme",
+  "description": "",
   "dependencies": {
-    "bcrypt": "^3.0.0",
-    "body-parser": "^1.18.3",
-    "cloudinary": "^1.22.0",
-    "connect-ensure-login": "^0.1.1",
-    "connect-flash": "^0.1.1",
-    "connect-mongo": "^2.0.1",
-    "cookie-parser": "^1.4.3",
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "express-session": "^1.15.6",
+    "bcrypt": "^5.0.0",
+    "cloudinary": "^1.23.0",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "faker": "^5.0.0",
-    "hbs": "^4.0.1",
-    "mongoose": "^5.2.10",
-    "morgan": "^1.9.0",
+    "hbs": "^4.1.1",
+    "mongoose": "^5.10.0",
+    "morgan": "^1.10.0",
     "multer": "^1.4.2",
-    "node-sass-middleware": "^0.11.0",
+    "multer-storage-cloudinary": "^4.0.0",
+    "node": "^14.8.0",
     "nodemailer": "^6.4.11",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "serve-favicon": "^2.5.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.12.1"
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-slack": "0.0.7"
   }
 }

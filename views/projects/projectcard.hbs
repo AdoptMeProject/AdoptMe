@@ -1,0 +1,41 @@
+<div class="card">
+  <img src="{{project.image}}" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title"><a href="/projects/{{project._id}}" class="text-dark">{{project.name}}</a></h5>
+
+    {{#if showDescription}}
+      <p class="card-text">
+        {{project.description}}
+      </p>
+    {{/if}}
+    
+    <p class="card-text">
+      {{#if project.author.name}}
+        Author: <a href="/users/{{project.author.id}}">{{project.author.name}}</a>
+      {{/if}}
+
+      {{#if project.staff.name}}
+        <small class="text-muted d-block">Staff: <a href="/users/{{project.staff.id}}">{{project.staff.name}}</a></small>
+      {{/if}}
+    </p>
+
+    <a href="{{project.github}}" class="btn btn-dark btn-sm" target="_blank">
+      <i class="fa fa-github mr-1"></i>
+    </a>
+
+    <a href="{{project.url}}" class="btn btn-primary btn-sm" target="_blank">
+      <i class="fa fa-globe mr-1"></i>
+    </a>
+
+    <button type="button" class="btn-sm btn btn-outline-danger" data-like-project="{{project.id}}">
+      <i class="fa fa-heart mr-1"></i>
+      <span class="likes-count">{{project.likes}}</span>
+      Likes
+    </button>
+  </div>
+
+  <div class="card-footer">
+    <small class="text-muted">{{date project.createdAt}}</small>
+  </div>
+</div>
