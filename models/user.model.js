@@ -1,6 +1,7 @@
 const Project = require("./project.model")
 const Comment = require("./comment.model")
 const Like = require("./like.model")
+//Like --> cambiar por Me interesa o algo así y se guarda en el perfil
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 
@@ -32,9 +33,9 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    minlength: [8, "password min length is 8"]
+    minlength: [4, "password min length is 4"]
   },
-  staff: {
+  shelter: {
     type: Boolean,
     default: false
   },

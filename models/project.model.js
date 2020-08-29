@@ -16,16 +16,16 @@ const projectSchema = new mongoose.Schema(
     url: {
       type: String,
       trim: true,
-      required: [true, 'Project url is required'],
+      // required: [true, 'Project url is required'],
     },
     github: {
       type: String,
       trim: true,
-      required: [true, 'Github url is required'],
+      // required: [true, 'Github url is required'],
     },
     image: {
       type: String,
-      required: [true, 'Image is required'],
+      // required: [true, 'Image is required'],
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,

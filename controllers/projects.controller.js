@@ -75,7 +75,7 @@ module.exports.create = (req, res, next) => {
   const project = new Project({
     ...req.body,
     image: req.file ? req.file.path : undefined,
-    author: req.currentUser._id
+    author: req.currentUser._id 
   })
 
   project.save()

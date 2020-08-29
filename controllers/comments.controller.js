@@ -1,6 +1,7 @@
 const Comment = require("../models/comment.model")
 
-module.exports.create = (req, res, next) => {  
+module.exports.create = (req, res, next) => {
+  console.log(req.currentUser);  
   const comment = new Comment({
     ...req.body,
     user: req.currentUser._id

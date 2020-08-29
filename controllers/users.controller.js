@@ -28,9 +28,10 @@ module.exports.doLogin = (req, res, next) => {
           .then(match => {
             if (match) {
               // if (user.activation.active) {
-              //   req.session.userId = user._id
+                req.session.userId = user._id
 
                 res.redirect('/projects')
+                //--> cambiar de projects a ¿?¿?
               // } else {
               //   res.render('users/login', {
               //     error: {
