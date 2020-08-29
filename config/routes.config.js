@@ -22,6 +22,9 @@ router.post('/users/:id/edit', session.isAuthenticated, upload.single('avatar'),
 router.post('/users/:id/delete', session.isAuthenticated, usersController.delete);
 // router.get('/users/:id/activate/:token', session.isNotAuthenticated, usersController.activateUser);
 
+router.get('/shelter/create', session.isAuthenticated, usersController.create);
+router.post('/shelter/create', session.isAuthenticated, usersController.beShelter);
+
 router.get('/projects', session.isAuthenticated, projectsController.list)
 router.post('/projects', session.isAuthenticated, upload.single('image'), projectsController.create)
 router.get('/projects/new', session.isAuthenticated, projectsController.new)

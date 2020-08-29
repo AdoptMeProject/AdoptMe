@@ -7,6 +7,13 @@
     </li>
   </ul>
 
+  {{!-- {{#if currentUser.shelter}} --}}
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/shelter/create">Become a shelter</a>
+      </li>
+    </ul>
+  {{!-- {{/if}} --}}
 {{!-- 
   <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
@@ -14,11 +21,14 @@
     </li>
   </ul> --}}
 
-  <div class="d-flex align-items-center">
-    <a class="btn btn-primary text-white mr-3" href="/projects/new">
-      <i class="fa fa-plus mr-1"></i>
-      New post
-    </a>
+  {{#if currentUser.shelter}}
+    <div class="d-flex align-items-center">
+      <a class="btn btn-primary text-white mr-3" href="/projects/new">
+        <i class="fa fa-plus mr-1"></i>
+        New post
+      </a>
+    </div>
+  {{/if}}
     
     <form class="form-inline my-lg-0 mr-2" action="/projects">
       <input value="{{search}}"" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

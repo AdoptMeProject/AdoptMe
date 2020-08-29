@@ -191,3 +191,65 @@ module.exports.delete = (req, res, next) => {
     res.redirect('/projects')
   }
 }
+
+module.exports.create = (req, res, next) => {
+  res.render('users/shelter/create')
+}
+
+module.exports.beShelter = (req, res, next) => {
+
+  const bodyFields = {
+    shelter: true,
+    city: req.body.city,
+    address: req.body.address,
+    phone: req.body.phone,
+    // enterprise_picture: req.file ? req.file.secure_url : ''
+  }
+  const city = req.body.city;
+  const address = req.body.address;
+  const phone = req.body.phone;
+
+
+  // const politics = typeof (req.body.politic) === 'string' ? [req.body.politic] : req.body.politic;
+
+
+  if (!city || !address || !phone) {
+    res.render('users/shelter/create', {
+      city,
+      address,
+      phone,
+      errors: {
+        city: city ? undefined : 'Write down a city',
+        address: address ? undefined : 'Write down an address',
+        phone: phone ? undefined : 'Write down a phone',
+      }
+    });
+  } else {
+
+    User.findByIdAndUpdate(req.user.id)
+    .then(user => {
+        if (!user) {
+          next(createError(404, 'User not found'));
+        } else {
+          res.redirect('/users/:id')
+        }
+      })
+      .catch(error => next(error));
+  }
+}
+
+// module.exports.beShelter = (req, res, next) => {
+//   const body = req.body
+
+//   User.findByIdAndUpdate(req.params.id, body, { runValidators: true, new: true })
+//     .then(user => {
+//       if (user) {
+//         user.shelter = true
+//         console.log(user.shelter);
+//         res.redirect(`/users/${user._id}/edit`)
+//       } else {
+//         res.redirect('/shelter/create')
+//       }
+//     })
+//     .catch(next)
+// }
