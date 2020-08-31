@@ -9,14 +9,14 @@ const faker = require('faker');
 
 const users = []
 
-function createUser(staff = false) {
+function createUser(shelter = false) {
   const user = new User({
     name: faker.name.findName(),
     email: faker.internet.email(),
     avatar: faker.internet.avatar(),
     password: '123456789A',
     bio: faker.lorem.paragraph(),
-    staff,
+    shelter,
     avtivation: {
       active: true
     }
@@ -25,7 +25,7 @@ function createUser(staff = false) {
   return user.save()
 }
 
-function createProject(user, staff) {
+function createProject(user, shelter) {
   const project = new Project({
     name: faker.company.companyName(),
     description: faker.lorem.paragraph(),
@@ -33,7 +33,7 @@ function createProject(user, staff) {
     github: faker.internet.url(),
     image: faker.image.image(),
     author: user._id,
-    staff: staff._id
+    shelter: shelter._id
   })
 
   return project.save()
@@ -73,8 +73,8 @@ function seeds() {
       console.log('Database restored!')
 
       createUser(true)
-        .then(staff => {
-          console.log(`STAFF - ${staff.email}`)
+        .then(shelter => {
+          console.log(`shelter - ${shelter.email}`)
           console.log()
 
           for (let i = 0; i < 100; i++) {
@@ -85,7 +85,7 @@ function seeds() {
                 users.push(user)
 
                 for (let j = 0; j < 3; j++) {
-                  createProject(user, staff)
+                  createProject(user, shelter)
                     .then(project => {
                       for (let k = 0; k < 10; k++) {
                         createComment(project)

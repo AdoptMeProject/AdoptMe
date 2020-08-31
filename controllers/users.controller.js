@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const User = require('../models/user.model')
 // const mailer = require('../config/mailer.config');
 const passport = require('passport')
+const { projectOwner } = require('../middlewares/project.middleware')
 
 module.exports.login = (req, res, next) => {
   res.render('users/login')
@@ -31,6 +32,7 @@ module.exports.doLogin = (req, res, next) => {
                 req.session.userId = user._id
 
                 res.redirect('/projects')
+                          // /users/home
                 //--> cambiar de projects a ¿?¿?
               // } else {
               //   res.render('users/login', {
@@ -99,10 +101,10 @@ module.exports.show = (req, res, next) => {
   User.findById(req.params.id)
     .populate({
       path: "projects",
-      populate: "staff"
+      populate: "shelter"
     })
     .populate({
-      path: "staffProjects",
+      path: "shelterProjects",
       populate: "author"
     })
     .then(user => {
@@ -114,7 +116,7 @@ module.exports.show = (req, res, next) => {
 module.exports.create = (req, res, next) => {
   const user = new User({
     ...req.body,
-    staff: false,
+    shelter: false,
     // avatar: req.file ? req.file.path : undefined
   });
 
@@ -196,60 +198,86 @@ module.exports.create = (req, res, next) => {
   res.render('users/shelter/create')
 }
 
-module.exports.beShelter = (req, res, next) => {
+// ===========> ejemplo de Carlos y Moi
 
-  const bodyFields = {
-    shelter: true,
-    city: req.body.city,
-    address: req.body.address,
-    phone: req.body.phone,
-    // enterprise_picture: req.file ? req.file.secure_url : ''
-  }
-  const city = req.body.city;
-  const address = req.body.address;
-  const phone = req.body.phone;
+// module.exports.beShelter = (req, res, next) => {
 
+//   const bodyFields = {
+//     shelter: true,
+//     city: req.body.city,
+//     address: req.body.address,
+//     phone: req.body.phone,
+//     // enterprise_picture: req.file ? req.file.secure_url : ''
+//   }
+//   const city = req.body.city;
+//   const address = req.body.address;
+//   const phone = req.body.phone;
 
-  // const politics = typeof (req.body.politic) === 'string' ? [req.body.politic] : req.body.politic;
+//   if (!city || !address || !phone) {
+//     res.render('users/shelter/create', {
+//       city,
+//       address,
+//       phone,
+//       errors: {
+//         city: city ? undefined : 'Write down a city',
+//         address: address ? undefined : 'Write down an address',
+//         phone: phone ? undefined : 'Write down a phone',
+//       }
+//     });
+//   } else {
 
+//     User.findByIdAndUpdate(req.user.id)
+//     .then(user => {
+//         if (!user) {
+//           next(createError(404, 'User not found'));
+//         } else {
+//           res.redirect('/users/:id')
+//         }
+//       })
+//       .catch(error => next(error));
+//   }
+// }
 
-  if (!city || !address || !phone) {
-    res.render('users/shelter/create', {
-      city,
-      address,
-      phone,
-      errors: {
-        city: city ? undefined : 'Write down a city',
-        address: address ? undefined : 'Write down an address',
-        phone: phone ? undefined : 'Write down a phone',
-      }
-    });
-  } else {
-
-    User.findByIdAndUpdate(req.user.id)
-    .then(user => {
-        if (!user) {
-          next(createError(404, 'User not found'));
-        } else {
-          res.redirect('/users/:id')
-        }
-      })
-      .catch(error => next(error));
-  }
-}
+// ===========> lo que intentamos con un update
 
 // module.exports.beShelter = (req, res, next) => {
 //   const body = req.body
 
-//   User.findByIdAndUpdate(req.params.id, body, { runValidators: true, new: true })
+//   User.findByIdAndUpdate(req.params.id, body, { shelter: true })
 //     .then(user => {
 //       if (user) {
-//         user.shelter = true
 //         console.log(user.shelter);
-//         res.redirect(`/users/${user._id}/edit`)
+//         res.redirect(`/users/${user._id}`)
 //       } else {
-//         res.redirect('/shelter/create')
+//         res.redirect('/projects')
 //       }
 //     })
 //     .catch(next)
+// }
+
+
+// ===========> lo que hay en el projects.controller
+
+// module.exports.beShelter = (req, res, next) => {
+//   const body = req.body
+
+//   // if (req.file) {
+//   //   body.image = req.file.path
+//   // }
+
+//   const user = req.user
+
+//   user.set(body)
+//   user.set(shelter)
+//   user.save()
+//     .then(() => {
+//       res.redirect(`/users/${user._id}`)
+//     })
+//     .catch((error) => {
+//       if (error instanceof mongoose.Error.ValidationError) {
+//         res.render("/shelter/create", { error: error.errors, project });
+//       } else {
+//         next(error);
+//       }
+//     })
 // }

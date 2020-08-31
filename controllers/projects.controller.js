@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 module.exports.show = (req, res, next) => {
   Project.findById(req.params.id)
     .populate('author')
-    .populate('staff')
+    .populate('shelter')
     .populate('likes')
     .populate({
       path: 'comments',
@@ -25,9 +25,9 @@ module.exports.show = (req, res, next) => {
 }
 
 module.exports.edit = (req, res, next) => {
-  User.find({ staff: true })
-    .then((staffUsers) => {
-      res.render('projects/edit', { staffUsers, project: req.project })
+  User.find({ shelter: true })
+    .then((shelterUsers) => {
+      res.render('projects/edit', { shelterUsers, project: req.project })
     })
     .catch(next)
 }
@@ -64,9 +64,9 @@ module.exports.delete = (req, res, next) => {
 }
 
 module.exports.new = (req, res, next) => {
-  User.find({ staff: true })
-    .then(staffUsers => {
-      res.render('projects/new', { staffUsers })
+  User.find({ shelter: true })
+    .then(shelterUsers => {
+      res.render('projects/new', { shelterUsers })
     })
     .catch(next)  
 }
@@ -84,9 +84,9 @@ module.exports.create = (req, res, next) => {
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
-        User.find({ staff: true })
-          .then(staffUsers => {
-            res.render('projects/new', { error: error.errors, project, staffUsers })
+        User.find({ shelter: true })
+          .then(shelterUsers => {
+            res.render('projects/new', { error: error.errors, project, shelterUsers })
           })
           .catch(next) 
       } else {
@@ -104,13 +104,13 @@ module.exports.list = (req, res, next) => {
     criteria['$or'] = [
       { name: new RegExp(req.query.search, "i") },
       { ['author.name']: new RegExp(req.query.search, "i") },
-      { ['staff.name']: new RegExp(req.query.search, "i") }
+      { ['shelter.name']: new RegExp(req.query.search, "i") }
     ]
   }
 
   Project.find(criteria)
     .populate('author')
-    .populate('staff')
+    .populate('shelter')
     .populate('likes')
     .then(projects => {
       res.render('projects/list', { projects })

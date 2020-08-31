@@ -32,7 +32,7 @@ const projectSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    staff: {
+    shelter: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"
     }

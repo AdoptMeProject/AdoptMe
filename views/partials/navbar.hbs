@@ -7,13 +7,22 @@
     </li>
   </ul>
 
-  {{!-- {{#if currentUser.shelter}} --}}
+  {{#if currentUser.shelter}}
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">🐶</li>
+    </ul>
+
+    {{else}}
+
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="/shelter/create">Become a shelter</a>
       </li>
     </ul>
-  {{!-- {{/if}} --}}
+
+  {{/if}}
+
 {{!-- 
   <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
@@ -31,7 +40,7 @@
   {{/if}}
     
     <form class="form-inline my-lg-0 mr-2" action="/projects">
-      <input value="{{search}}"" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <input value="{{search}}" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
 
     <div class="btn-group">

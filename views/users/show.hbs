@@ -1,20 +1,30 @@
 <article class="container">
+
   <div class="row">
+
     <div class="col-2">
       <img class="w-100 rounded-circle" src="{{user.avatar}}" />
     </div>
 
     <div class="col-10">
+
       <h1>{{user.name}}</h1>
       <p>{{user.bio}}</p>
       <p><strong>Email:</strong> {{user.email}}</p>
 
-      {{#if user.staff}}
-        <p><strong><i class="fa fa-star mr-1"></i>STAFF</strong></p>
+      {{#if user.shelter}}
+
+        <p><strong><i class="fa fa-star mr-1"></i>SHELTER</strong></p>
+        <p>City: {{user.city}}</p>
+        <Address>{{user.address}}</Address>
+        <p>Contact: {{user.phone}}</p>
+        
       {{/if}}
 
       {{#ifEquals currentUser.email user.email}}
+
         <div>
+
           <a class="btn btn-secondary" href="/users/{{currentUser._id}}/edit">
             <i class="fa fa-edit mr-2"></i>
             Edit
@@ -26,17 +36,23 @@
               Remove account
             </button>
           </form>
+
         </div>
+
       {{/ifEquals}}
+
     </div>
+
   </div>
 
   <div>
-    {{#if user.staff}}
-      <h2 class="my-4">Staff projects</h2>
+
+    {{#if user.shelter}}
+
+      <h2 class="my-4">Shelter posts</h2>
       
       <div class="row">
-        {{#each user.staffProjects as |project|}}
+        {{#each user.shelterProjects as |project|}}
         <div class="col-xl-4 col-lg-6 col-sm-12 mb-4">
           {{>projects/projectcard project=project }}
         </div>
@@ -44,18 +60,25 @@
       </div>
 
       <hr/>
+
     {{/if}}
+
   </div>
 
   <div>
-    <h2 class="my-4">Projects</h2>
+
+    <h2 class="my-4">Posts</h2>
 
     <div class="row">
+
       {{#each user.projects as |project|}}
         <div class="col-xl-4 col-lg-6 col-sm-12 mb-4">
           {{>projects/projectcard project=project }}
         </div>
       {{/each}}
+
     </div>
+
   </div>
+
 </article>

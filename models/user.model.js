@@ -75,10 +75,10 @@ userSchema.virtual("projects", {
   justOne: false,
 });
 
-userSchema.virtual("staffProjects", {
+userSchema.virtual("shelterProjects", {
   ref: "Project",
   localField: "_id",
-  foreignField: "staff",
+  foreignField: "shelter",
   justOne: false,
 });
 

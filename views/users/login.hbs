@@ -1,47 +1,65 @@
 
 <article class="container">
+
   {{#if message}}
+
     <div class="alert alert-primary" role="alert">
       {{message}}
     </div>
+
   {{/if}}
 
   {{#if error.validation}}
+
     <div class="alert alert-danger" role="alert">
       {{error.validation.message}}
     </div>
+
   {{/if}}
 
   <form action="/login" method="POST">
+
     <div class="form-group">
+
       <label for="email">Email</label>
       <input name="email" type="email" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
         placeholder="Enter email" value="{{ user.email }}" required>
   
       {{#if error.email}}
-      <div class="invalid-feedback">
-        {{error.email.message}}
-      </div>
+
+        <div class="invalid-feedback">
+          {{error.email.message}}
+        </div>
+
       {{/if}}
+
     </div>
   
     <div class="form-group">
+
       <label for="password">Password</label>
       <input name="password" type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" id="password"
         placeholder="Enter password" value="{{ user.password }}" required>
   
       {{#if error.password}}
-      <div class="invalid-feedback">
-        {{error.password.message}}
-      </div>
+
+        <div class="invalid-feedback">
+          {{error.password.message}}
+        </div>
+
       {{/if}}
+
     </div>
   
     <div class="d-flex mb-3">
+
       <button type="submit" class="btn btn-primary mr-3">Login</button>
       <a href="/auth/slack" class="btn btn-secondary"><i class="fa fa-slack"></i> Login with Slack</a>
+
     </div>
   
     <p>Don't have an account? <a href="/users/new">register</a></p>
+
   </form>
+  
 </article>

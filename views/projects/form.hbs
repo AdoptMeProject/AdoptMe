@@ -59,16 +59,16 @@
   </div>
 
   <div class="form-group">
-    <label for="github">Staff</label>
-    <select class="form-control {{#if error.staff }}is-invalid{{/if}}" name="staff">
-      {{#each staffUsers as |staff|}}
-        <option value="{{staff._id}}">{{staff.name}}</option>
+    <label for="github">shelter</label>
+    <select class="form-control {{#if error.shelter }}is-invalid{{/if}}" name="shelter">
+      {{#each shelterUsers as |shelter|}}
+        <option value="{{shelter._id}}">{{shelter.name}}</option>
       {{/each}}
     </select>
 
-    {{#if error.staff}}
+    {{#if error.shelter}}
       <div class="invalid-feedback">
-        {{error.staff.message}}
+        {{error.shelter.message}}
       </div>
     {{/if}}
   </div>
