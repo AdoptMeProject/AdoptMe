@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const Comment = require('../models/comment.model')
-const Like = require('../models/like.model')
+const Comment = require('./comment.model')
+const Like = require('./like.model')
 
-const projectSchema = new mongoose.Schema(
+const postSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'Project title is required'],
+      required: [true, 'post title is required'],
       trim: true
     },
     description: {
@@ -16,7 +16,7 @@ const projectSchema = new mongoose.Schema(
     url: {
       type: String,
       trim: true,
-      // required: [true, 'Project url is required'],
+      // required: [true, 'post url is required'],
     },
     github: {
       type: String,
@@ -40,28 +40,28 @@ const projectSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-projectSchema.virtual("comments", {
+postSchema.virtual("comments", {
   ref: "Comment",
   localField: "_id",
-  foreignField: "project",
+  foreignField: "post",
   justOne: false,
 });
 
-projectSchema.virtual("likes", {
+postSchema.virtual("likes", {
   ref: "Like",
   localField: "_id",
-  foreignField: "project",
+  foreignField: "post",
   count: true
 });
 
-projectSchema.post('remove', function (next) {
+postSchema.post('remove', function (next) {
   Promise.all([
-    Like.deleteMany({ project: this._id }),
-    Comment.deleteMany({ project: this._id })
+    Like.deleteMany({ post: this._id }),
+    Comment.deleteMany({ post: this._id })
   ])
     .then(next)
 })
 
-const Project = mongoose.model("Project", projectSchema);
+const Post = mongoose.model("post", postSchema);
 
-module.exports = Project;
+module.exports = Post;

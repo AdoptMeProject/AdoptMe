@@ -1,11 +1,11 @@
-const Project = require("../models/project.model")
+const Post = require("../models/post.model")
 const User = require("../models/user.model")
 const Like = require("../models/like.model")
 const mongoose = require('mongoose')
 
-// GET /projects/:id
+// GET /posts/:id
 module.exports.show = (req, res, next) => {
-  Project.findById(req.params.id)
+  Post.findById(req.params.id)
     .populate('author')
     .populate('shelter')
     .populate('likes')
@@ -18,8 +18,8 @@ module.exports.show = (req, res, next) => {
       },
       populate: 'user'
     })
-    .then(project => {
-      res.render('projects/show', { project })
+    .then(post => {
+      res.render('posts/show', { post })
     })
     .catch(next)
 }
@@ -27,7 +27,7 @@ module.exports.show = (req, res, next) => {
 module.exports.edit = (req, res, next) => {
   User.find({ shelter: true })
     .then((shelterUsers) => {
-      res.render('projects/edit', { shelterUsers, project: req.project })
+      res.render('posts/edit', { shelterUsers, post: req.post })
     })
     .catch(next)
 }
@@ -39,16 +39,16 @@ module.exports.update = (req, res, next) => {
     body.image = req.file.path
   }
 
-  const project = req.project
+  const post = req.post
 
-  project.set(body)
-  project.save()
+  post.set(body)
+  post.save()
     .then(() => {
-      res.redirect(`/projects/${project.id}`)
+      res.redirect(`/posts/${post.id}`)
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.render("projects/edit", { error: error.errors, project });
+        res.render("posts/edit", { error: error.errors, post });
       } else {
         next(error);
       }
@@ -56,9 +56,9 @@ module.exports.update = (req, res, next) => {
 }
 
 module.exports.delete = (req, res, next) => {
-  req.project.remove()
+  req.post.remove()
     .then(() => {
-      res.redirect('/projects')
+      res.redirect('/posts')
     })
     .catch(next)
 }
@@ -66,27 +66,27 @@ module.exports.delete = (req, res, next) => {
 module.exports.new = (req, res, next) => {
   User.find({ shelter: true })
     .then(shelterUsers => {
-      res.render('projects/new', { shelterUsers })
+      res.render('posts/new', { shelterUsers })
     })
     .catch(next)  
 }
 
 module.exports.create = (req, res, next) => {
-  const project = new Project({
+  const post = new Post({
     ...req.body,
     image: req.file ? req.file.path : undefined,
     author: req.currentUser._id 
   })
 
-  project.save()
-    .then(project => {
-      res.redirect(`/projects/${project._id}`)
+  post.save()
+    .then(post => {
+      res.redirect(`/posts/${post._id}`)
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
         User.find({ shelter: true })
           .then(shelterUsers => {
-            res.render('projects/new', { error: error.errors, project, shelterUsers })
+            res.render('posts/new', { error: error.errors, post, shelterUsers })
           })
           .catch(next) 
       } else {
@@ -108,18 +108,18 @@ module.exports.list = (req, res, next) => {
     ]
   }
 
-  Project.find(criteria)
+  Post.find(criteria)
     .populate('author')
     .populate('shelter')
     .populate('likes')
-    .then(projects => {
-      res.render('projects/list', { projects })
+    .then(posts => {
+      res.render('posts/list', { posts })
     })
     .catch(next)
 }
 
 module.exports.like = (req, res, next) => {
-  const params = { project: req.params.id, user: req.currentUser._id };
+  const params = { post: req.params.id, user: req.currentUser._id };
 
   Like.findOne(params)
     .then(like => {

@@ -1,17 +1,17 @@
 <article class="container">
   <div class="mb-4">
-    {{>projects/projectcard project=project showDescription=true}}
+    {{>posts/postcard post=post showDescription=true}}
   </div>
 
-  {{#ifEquals project.author.email currentUser.email}}
+  {{#ifEquals post.author.email currentUser.email}}
     <div class="mb-3">
-      <a href="/projects/{{project._id}}/edit" class="btn btn-secondary">
+      <a href="/posts/{{post._id}}/edit" class="btn btn-secondary">
         <i class="fa fa-cog"></i>
         Edit
       </a>
 
       
-        <a href="/projects/{{project._id}}/delete" class="btn btn-danger">
+        <a href="/posts/{{post._id}}/delete" class="btn btn-danger">
           <i class="fa fa-trash"></i>
           Delete
         </a>
@@ -21,9 +21,9 @@
   <div id="comments">
     <h2>Comments</h2>
 
-    {{>projects/newcomment}}
+    {{>posts/newcomment}}
 
-    {{#each project.comments as |comment|}}
+    {{#each post.comments as |comment|}}
       <div class="border-bottom mb-3 py-3">
         <p>{{comment.text}}</p>
 

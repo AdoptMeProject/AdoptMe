@@ -1,14 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const session = require('../middlewares/session.middleware')
-const projectsMiddleware = require('../middlewares/project.middleware')
-const projectsController = require('../controllers/projects.controller')
+const postsMiddleware = require('../middlewares/post.middleware')
+const postController = require('../controllers/post.controller')
 const usersController = require('../controllers/users.controller')
 const commentsController = require('../controllers/comments.controller')
 const upload = require('../config/multer.config');
-
-// session.isAuthenticated
-// session.isNotAuthenticated
 
 router.get('/auth/slack', session.isNotAuthenticated, usersController.doSocialLogin);
 router.get('/login', session.isNotAuthenticated, usersController.login)
@@ -22,23 +19,23 @@ router.post('/users/:id/edit', session.isAuthenticated, upload.single('avatar'),
 router.post('/users/:id/delete', session.isAuthenticated, usersController.delete);
 // router.get('/users/:id/activate/:token', session.isNotAuthenticated, usersController.activateUser);
 
-router.get('/shelter/create', session.isAuthenticated, usersController.create);
-// router.post('/shelter/create', session.isAuthenticated, usersController.beShelter);
+router.get('/shelter/create', session.isAuthenticated, usersController.createShelter);
+router.post('/shelter/create', session.isAuthenticated, usersController.beShelter);
 
-router.get('/projects', session.isAuthenticated, projectsController.list)
-router.post('/projects', session.isAuthenticated, upload.single('image'), projectsController.create)
-router.get('/projects/new', session.isAuthenticated, projectsController.new)
-router.get('/projects/:id', session.isAuthenticated, projectsController.show)
-router.get('/projects/:id/edit', session.isAuthenticated, projectsMiddleware.projectOwner, projectsController.edit)
-router.post('/projects/:id/delete', session.isAuthenticated, projectsMiddleware.projectOwner, projectsController.delete)
-router.post('/projects/:id/edit', session.isAuthenticated, projectsMiddleware.projectOwner, upload.single('image'), projectsController.update)
-router.post('/projects/:id/like', session.isAuthenticated, projectsController.like)
+router.get('/posts', session.isAuthenticated, postController.list)
+router.post('/posts', session.isAuthenticated, upload.single('image'), postController.create)
+router.get('/posts/new', session.isAuthenticated, postController.new)
+router.get('/posts/:id', session.isAuthenticated, postController.show)
+router.get('/posts/:id/edit', session.isAuthenticated, postsMiddleware.postOwner, postController.edit)
+router.post('/posts/:id/delete', session.isAuthenticated, postsMiddleware.postOwner, postController.delete)
+router.post('/posts/:id/edit', session.isAuthenticated, postsMiddleware.postOwner, upload.single('image'), postController.update)
+router.post('/posts/:id/like', session.isAuthenticated, postController.like)
 
 router.post('/comments', session.isAuthenticated, commentsController.create)
 router.post('/comments/:id/delete', session.isAuthenticated, commentsController.delete)
 
-router.get('/', (req, res) => res.redirect('/login'))
-// /projects
+router.get('/', (req, res) => res.render('users/login'))
+// /posts
 
 
 module.exports = router;

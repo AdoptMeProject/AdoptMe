@@ -1,0 +1,43 @@
+<div class="card">
+  <img src="{{post.image}}" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title"><a href="/posts/{{post._id}}" class="text-dark">{{post.name}}</a></h5>
+
+    {{#if showDescription}}
+      <p class="card-text">
+        {{post.description}}
+      </p>
+    {{/if}}
+    
+    <p class="card-text">
+      {{#if post.author.name}}
+        Shelter: <a href="/users/{{post.author.id}}">{{post.author.name}}</a>
+      {{/if}}
+
+      {{!-- {{#if post.shelter.name}}
+        <small class="text-muted d-block">shelter: <a href="/users/{{post.shelter.id}}">{{post.shelter.name}}</a></small>
+      {{/if}} --}}
+    </p>
+
+    {{!-- Aquí podríamos poner un apartado para compartir anuncio en otras redes sociales --}}
+{{!-- 
+    <a href="{{post.github}}" class="btn btn-dark btn-sm" target="_blank">
+      <i class="fa fa-github mr-1"></i>
+    </a>
+
+    <a href="{{post.url}}" class="btn btn-primary btn-sm" target="_blank">
+      <i class="fa fa-globe mr-1"></i>
+    </a>
+
+    <button type="button" class="btn-sm btn btn-outline-danger" data-like-post="{{post.id}}">
+      <i class="fa fa-heart mr-1"></i>
+      <span class="likes-count">{{post.likes}}</span>
+      Likes
+    </button> --}}
+  </div>
+
+  <div class="card-footer">
+    <small class="text-muted">{{date post.createdAt}}</small>
+  </div>
+</div>

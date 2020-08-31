@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const User = require('../models/user.model')
 // const mailer = require('../config/mailer.config');
 const passport = require('passport')
-const { projectOwner } = require('../middlewares/project.middleware')
+const { postOwner } = require('../middlewares/post.middleware')
 
 module.exports.login = (req, res, next) => {
   res.render('users/login')
@@ -31,9 +31,9 @@ module.exports.doLogin = (req, res, next) => {
               // if (user.activation.active) {
                 req.session.userId = user._id
 
-                res.redirect('/projects')
+                res.redirect('/posts')
                           // /users/home
-                //--> cambiar de projects a ¿?¿?
+                //--> cambiar de posts a ¿?¿?
               // } else {
               //   res.render('users/login', {
               //     error: {
@@ -91,7 +91,7 @@ module.exports.update = (req, res, next) => {
       if (user) {
         res.redirect(`/users/${user._id}`)
       } else {
-        res.redirect('/projects')
+        res.redirect('/posts')
       }
     })
     .catch(next)
@@ -100,11 +100,11 @@ module.exports.update = (req, res, next) => {
 module.exports.show = (req, res, next) => {
   User.findById(req.params.id)
     .populate({
-      path: "projects",
+      path: "posts",
       populate: "shelter"
     })
     .populate({
-      path: "shelterProjects",
+      path: "shelterposts",
       populate: "author"
     })
     .then(user => {
@@ -114,6 +114,7 @@ module.exports.show = (req, res, next) => {
 }
 
 module.exports.create = (req, res, next) => {
+  console.log(req.body);
   const user = new User({
     ...req.body,
     shelter: false,
@@ -190,52 +191,56 @@ module.exports.delete = (req, res, next) => {
       })
       .catch(next)
   } else {
-    res.redirect('/projects')
+    res.redirect('/posts')
   }
 }
 
-module.exports.create = (req, res, next) => {
+module.exports.createShelter = (req, res, next) => {
   res.render('users/shelter/create')
 }
 
-// ===========> ejemplo de Carlos y Moi
+// ===========> ejemplo
 
-// module.exports.beShelter = (req, res, next) => {
+module.exports.beShelter = (req, res, next) => {
 
-//   const bodyFields = {
-//     shelter: true,
-//     city: req.body.city,
-//     address: req.body.address,
-//     phone: req.body.phone,
-//     // enterprise_picture: req.file ? req.file.secure_url : ''
-//   }
-//   const city = req.body.city;
-//   const address = req.body.address;
-//   const phone = req.body.phone;
+  const bodyFields = {
+    shelter: true,
+    city: req.body.city,
+    address: req.body.address,
+    phone: req.body.phone,
+  }
+  const city = req.body.city;
+  const address = req.body.address;
+  const phone = req.body.phone;
 
-//   if (!city || !address || !phone) {
-//     res.render('users/shelter/create', {
-//       city,
-//       address,
-//       phone,
-//       errors: {
-//         city: city ? undefined : 'Write down a city',
-//         address: address ? undefined : 'Write down an address',
-//         phone: phone ? undefined : 'Write down a phone',
-//       }
-//     });
-//   } else {
-
-//     User.findByIdAndUpdate(req.user.id)
-//     .then(user => {
-//         if (!user) {
-//           next(createError(404, 'User not found'));
-//         } else {
-//           res.redirect('/users/:id')
-//         }
-//       })
-//       .catch(error => next(error));
-//   }
+  if (!city || !address || !phone) {
+    res.render('users/shelter/create', {
+      city,
+      address,
+      phone,
+      errors: {
+        city: city ? undefined : 'Write down a city',
+        address: address ? undefined : 'Write down an address',
+        phone: phone ? undefined : 'Write down a phone',
+      }
+    });
+    } else {
+    User.findByIdAndUpdate(req.session.userId, {
+      $set: bodyFields
+    }, {
+      safe: true,
+      upsert: true,
+      new: true
+    }).then(user => {
+      if (!user) {
+        next(createError(404, 'User not found'));
+      } else {
+        res.redirect('/posts')
+      }
+    })
+    .catch(error => next(error));
+  }
+}
 // }
 
 // ===========> lo que intentamos con un update
@@ -249,14 +254,14 @@ module.exports.create = (req, res, next) => {
 //         console.log(user.shelter);
 //         res.redirect(`/users/${user._id}`)
 //       } else {
-//         res.redirect('/projects')
+//         res.redirect('/posts')
 //       }
 //     })
 //     .catch(next)
 // }
 
 
-// ===========> lo que hay en el projects.controller
+// ===========> lo que hay en el post.controller
 
 // module.exports.beShelter = (req, res, next) => {
 //   const body = req.body
@@ -275,7 +280,7 @@ module.exports.create = (req, res, next) => {
 //     })
 //     .catch((error) => {
 //       if (error instanceof mongoose.Error.ValidationError) {
-//         res.render("/shelter/create", { error: error.errors, project });
+//         res.render("/shelter/create", { error: error.errors, post });
 //       } else {
 //         next(error);
 //       }

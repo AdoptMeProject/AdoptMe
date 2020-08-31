@@ -7,9 +7,9 @@ const likeSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    project: {
+    post: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Project",
+      ref: "post",
       required: true,
     },
   },

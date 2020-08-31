@@ -52,9 +52,9 @@
       <h2 class="my-4">Shelter posts</h2>
       
       <div class="row">
-        {{#each user.shelterProjects as |project|}}
+        {{#each user.shelterposts as |post|}}
         <div class="col-xl-4 col-lg-6 col-sm-12 mb-4">
-          {{>projects/projectcard project=project }}
+          {{>posts/postcard post=post }}
         </div>
         {{/each}}
       </div>
@@ -71,9 +71,9 @@
 
     <div class="row">
 
-      {{#each user.projects as |project|}}
+      {{#each user.posts as |post|}}
         <div class="col-xl-4 col-lg-6 col-sm-12 mb-4">
-          {{>projects/projectcard project=project }}
+          {{>posts/postcard post=post }}
         </div>
       {{/each}}
 

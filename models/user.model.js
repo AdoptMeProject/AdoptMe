@@ -1,4 +1,4 @@
-const Project = require("./project.model")
+const post = require("./post.model")
 const Comment = require("./comment.model")
 const Like = require("./like.model")
 //Like --> cambiar por Me interesa o algo así y se guarda en el perfil
@@ -68,15 +68,15 @@ const userSchema = new mongoose.Schema({
 { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
-userSchema.virtual("projects", {
-  ref: "Project",
+userSchema.virtual("posts", {
+  ref: "post",
   localField: "_id",
   foreignField: "author",
   justOne: false,
 });
 
-userSchema.virtual("shelterProjects", {
-  ref: "Project",
+userSchema.virtual("shelterposts", {
+  ref: "post",
   localField: "_id",
   foreignField: "shelter",
   justOne: false,
@@ -95,7 +95,7 @@ userSchema.pre('save', function (next) {
 
 userSchema.post('remove', function (next) {
   Promise.all([
-    Project.deleteMany({ author: this._id }),
+    post.deleteMany({ author: this._id }),
     Like.deleteMany({ user: this._id }),
     Comment.deleteMany({ user: this._id })
   ])

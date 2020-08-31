@@ -1,3 +1,4 @@
+// TODO
 const cloudinary = require("cloudinary").v2
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
@@ -11,7 +12,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "ironsummerproject",
+    folder: "ironsummerpost",
     allowedFormats: ["jpg", "png", "jpeg"],
   },
 });

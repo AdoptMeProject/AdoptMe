@@ -14,9 +14,9 @@ document.querySelectorAll("[data-enable]").forEach(el => {
     })
   })
   
-  document.querySelectorAll("[data-like-project]").forEach(el => {
+  document.querySelectorAll("[data-like-post]").forEach(el => {
     el.addEventListener("click", function () {
-      axios.post(`/projects/${this.dataset.likeProject}/like`)
+      axios.post(`/posts/${this.dataset.likepost}/like`)
         .then(response => {
           const likesContainer = this.querySelector(".likes-count")
   

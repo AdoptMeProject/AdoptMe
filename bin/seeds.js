@@ -3,7 +3,7 @@ require("../config/db.config");
 
 const User = require('../models/user.model')
 const Comment = require('../models/comment.model')
-const Project = require('../models/project.model')
+const Post = require('../models/post.model')
 const Like = require('../models/like.model');
 const faker = require('faker');
 
@@ -25,8 +25,8 @@ function createUser(shelter = false) {
   return user.save()
 }
 
-function createProject(user, shelter) {
-  const project = new Project({
+function createPost(user, shelter) {
+  const post = new Post({
     name: faker.company.companyName(),
     description: faker.lorem.paragraph(),
     url: faker.internet.url(),
@@ -36,23 +36,23 @@ function createProject(user, shelter) {
     shelter: shelter._id
   })
 
-  return project.save()
+  return post.save()
 }
 
-function createComment(project) {
+function createComment(post) {
   const comment = new Comment({
     text: faker.lorem.paragraph(),
     user: users[Math.floor(Math.random() * users.length)]._id,
-    project: project._id
+    post: post._id
   })
 
   return comment.save()
 }
 
-function createLike(project ) {
+function createLike(post ) {
   const like = new Like({
     user: users[Math.floor(Math.random() * users.length)]._id,
-    project: project._id
+    post: post._id
   })
 
   return like.save()
@@ -62,7 +62,7 @@ function restoreDatabase() {
   return Promise.all([
     User.deleteMany({}),
     Comment.deleteMany({}),
-    Project.deleteMany({}),
+    post.deleteMany({}),
     Like.deleteMany({})
   ])
 }
@@ -85,11 +85,11 @@ function seeds() {
                 users.push(user)
 
                 for (let j = 0; j < 3; j++) {
-                  createProject(user, shelter)
-                    .then(project => {
+                  createPost(user, shelter)
+                    .then(post => {
                       for (let k = 0; k < 10; k++) {
-                        createComment(project)
-                        createLike(project)
+                        createComment(post)
+                        createLike(post)
                       }
                     })
                 }

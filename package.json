@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AdoptMeProject/AdoptMe.git"
+    "url": "git+https://github.com/AdoptMepost/AdoptMe.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AdoptMeProject/AdoptMe/issues"
+    "url": "https://github.com/AdoptMepost/AdoptMe/issues"
   },
-  "homepage": "https://github.com/AdoptMeProject/AdoptMe#readme",
+  "homepage": "https://github.com/AdoptMepost/AdoptMe#readme",
   "description": "",
   "dependencies": {
     "bcrypt": "^5.0.0",

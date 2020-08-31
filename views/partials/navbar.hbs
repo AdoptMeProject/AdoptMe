@@ -3,7 +3,7 @@
 
   <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
-      <a class="nav-link" href="/projects">Adopt an animal</a>
+      <a class="nav-link" href="/posts">Adopt an animal</a>
     </li>
   </ul>
 
@@ -26,20 +26,20 @@
 {{!-- 
   <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
-      <a class="nav-link" href="/projects">Adoption</a>
+      <a class="nav-link" href="/posts">Adoption</a>
     </li>
   </ul> --}}
 
   {{#if currentUser.shelter}}
     <div class="d-flex align-items-center">
-      <a class="btn btn-primary text-white mr-3" href="/projects/new">
+      <a class="btn btn-primary text-white mr-3" href="/posts/new">
         <i class="fa fa-plus mr-1"></i>
         New post
       </a>
     </div>
   {{/if}}
     
-    <form class="form-inline my-lg-0 mr-2" action="/projects">
+    <form class="form-inline my-lg-0 mr-2" action="/posts">
       <input value="{{search}}" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
 

@@ -8,7 +8,7 @@ module.exports.create = (req, res, next) => {
   })
 
   const redirect = () => {
-    res.redirect(`/projects/${comment.project}#comments`)
+    res.redirect(`/posts/${comment.post}#comments`)
   }
 
   comment.save()
@@ -22,11 +22,11 @@ module.exports.delete = (req, res, next) => {
       if (comment.user.toString() === req.currentUser._id.toString()) {
         Comment.findByIdAndDelete(comment._id)
           .then(() => {
-            res.redirect(`/projects/${comment.project}#comments`)
+            res.redirect(`/posts/${comment.post}#comments`)
           })
           .catch(next)
       } else {
-        res.redirect(`/projects/${comment.project}#comments`)
+        res.redirect(`/posts/${comment.post}#comments`)
       }
     })
     .catch(next)
