@@ -104,7 +104,8 @@ module.exports.list = (req, res, next) => {
     criteria['$or'] = [
       { name: new RegExp(req.query.search, "i") },
       { ['author.name']: new RegExp(req.query.search, "i") },
-      { ['shelter.name']: new RegExp(req.query.search, "i") }
+      { ['shelter.name']: new RegExp(req.query.search, "i") },
+      { species: new RegExp(req.query.search, "i") }
     ]
   }
 
@@ -140,4 +141,10 @@ module.exports.like = (req, res, next) => {
       }
     })
     .catch(next);
+}
+
+module.exports.filter = (req, res, next) => {
+  const params = req.params
+
+  Post.findById()
 }

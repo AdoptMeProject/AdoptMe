@@ -18,10 +18,15 @@ const postSchema = new mongoose.Schema(
       trim: true,
       // required: [true, 'post url is required'],
     },
-    github: {
-      type: String,
+    place: {
+      type: String, 
       trim: true,
-      // required: [true, 'Github url is required'],
+      required: [true, 'Location is required'],
+    },
+    species: {
+      type: String,
+      enum: ['Dog', 'Cat', 'Others'],
+      required: [true, 'Species is required'],
     },
     image: {
       type: String,

@@ -1,7 +1,7 @@
 {{#if post}}
   <form action="/posts/{{post.id}}/edit" method="POST" enctype="multipart/form-data">
 {{else}}
-  <form action="/posts" method="POST" enctype="multipart/form-data">
+  <form action="/posts" method="POST">
 {{/if}}
   <div class="form-group">
     <label for="name">Name</label>
@@ -26,34 +26,26 @@
   </div>
 
   <div class="form-group">
-    <label for="url">URL</label>
-    <input value="{{post.url}}" type="text" class="form-control {{#if error.url }}is-invalid{{/if}}" id="url" name="url">
+    <label for="place">Location</label>
+    <input value="{{post.place}}" name="place" type="text" class="form-control {{#if error.place }}is-invalid{{/if}}">
 
-    {{#if error.url}}
+    {{#if error.place}}
       <div class="invalid-feedback">
-        {{error.url.message}}
+        {{error.place.message}}
       </div>
     {{/if}}
   </div>
 
   <div class="form-group">
-    <label for="github">Github</label>
-    <input value="{{post.github}}" type="text" class="form-control {{#if error.github }}is-invalid{{/if}}" id="github" name="github">
-
-    {{#if error.github}}
+    <label for="species">Species</label>
+    <select class="form-control {{#if error.species }}is-invalid{{/if}}" name="species">
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+        <option value="Others">Others</option>
+    </select>
+    {{#if error.species}}
       <div class="invalid-feedback">
-        {{error.github.message}}
-      </div>
-    {{/if}}
-  </div>
-
-  <div class="form-group">
-    <label for="github">Image</label>
-    <input value="{{post.image}}" type="file" class="form-control-file {{#if error.image }}is-invalid{{/if}}" id="image" name="image">
-
-    {{#if error.image}}
-      <div class="invalid-feedback">
-        {{error.image.message}}
+        {{error.species.message}}
       </div>
     {{/if}}
   </div>

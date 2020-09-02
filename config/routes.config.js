@@ -34,7 +34,7 @@ router.post('/posts/:id/like', session.isAuthenticated, postController.like)
 router.post('/comments', session.isAuthenticated, commentsController.create)
 router.post('/comments/:id/delete', session.isAuthenticated, commentsController.delete)
 
-router.get('/', (req, res) => res.render('users/login'))
+router.get('/', (req, res) => res.redirect('/posts'))
 // /posts
 
 

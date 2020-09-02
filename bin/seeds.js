@@ -62,7 +62,7 @@ function restoreDatabase() {
   return Promise.all([
     User.deleteMany({}),
     Comment.deleteMany({}),
-    post.deleteMany({}),
+    Post.deleteMany({}),
     Like.deleteMany({})
   ])
 }
