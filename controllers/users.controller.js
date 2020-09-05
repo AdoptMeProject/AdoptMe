@@ -17,9 +17,30 @@ module.exports.doSocialLogin = (req, res, next) => {
       res.redirect("/");
     }
   })
+  
 
   passportController(req, res, next);
 }
+
+module.exports.doSocialLoginGoogle = (req, res, next) => {
+  const passportController = passport.authenticate("google", { scope: ['profile', 'email'] })
+
+  passportController(req, res, next);
+}
+
+module.exports.googleCallback = (req, res, next) => {
+  const passportController = passport.authenticate("google", (error, user) => {
+    if (error) {
+      next(error);
+    } else {
+      req.session.userId = user._id;
+      res.redirect("/");
+    }
+  })
+
+  passportController(req, res, next);
+}
+
 
 module.exports.doLogin = (req, res, next) => {
   User.findOne({ email: req.body.email })

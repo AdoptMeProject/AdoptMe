@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser')
 require('./config/db.config')
 require('./config/hbs.config');
 
-// const passport = require('./config/passport.config');
+const passport = require('./config/passport.config');
 const session = require("./config/session.config");
 
 const app = express();
@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger("dev"));
 app.use(cookieParser())
 app.use(session)
-// app.use(passport)
+app.use(passport)
 
 /**
  * View engine setup
