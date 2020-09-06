@@ -27,6 +27,9 @@ const users = [
 ]
 
 const species = ['Dog', 'Cat', 'Others']
+const age = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+const size = ['Small', 'Medium', 'Big']
+const gender = ['Male', 'Female']
 
 const createdUsers = []
 
@@ -44,6 +47,10 @@ function createPost(user) {
     image: faker.image.cats(),
     author: user._id,
     species: species[Math.floor(Math.random() * species.length)],
+    gender: gender[Math.floor(Math.random() * species.length)],
+    age: age[Math.floor(Math.random() * species.length)],
+    size: size[Math.floor(Math.random() * species.length)],
+    breed: faker.lorem.word(),
     place: user.city,
   })
 

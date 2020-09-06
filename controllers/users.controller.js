@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const User = require('../models/user.model')
-// const mailer = require('../config/mailer.config');
+const mailer = require('../config/mailer.config');
 const passport = require('passport')
 const { postOwner } = require('../middlewares/post.middleware')
 
@@ -49,21 +49,19 @@ module.exports.doLogin = (req, res, next) => {
         user.checkPassword(req.body.password)
           .then(match => {
             if (match) {
-              // if (user.activation.active) {
+              if (user.activation.active) {
                 req.session.userId = user._id
 
                 res.redirect('/posts')
-                          // /users/home
-                //--> cambiar de posts a ¿?¿?
-              // } else {
-              //   res.render('users/login', {
-              //     error: {
-              //       validation: {
-              //         message: 'Your account is not active, check your email!'
-              //       }
-              //     }
-              //   })
-              // }
+              } else {
+                res.render('users/login', {
+                  error: {
+                    validation: {
+                      message: 'Your account is not active, check your email!'
+                    }
+                  }
+                })
+              }
             } else {
               res.render('users/login', {
                 error: {
@@ -139,17 +137,27 @@ module.exports.create = (req, res, next) => {
   const user = new User({
     ...req.body,
     shelter: false,
-    // avatar: req.file ? req.file.path : undefined
+    avatar: req.file ? req.file.path : undefined
   });
 
   user.save()
     .then(user => {
+      mailer.sendValidationEmail({
+        name: user.name,
+        email: user.email,
+        id: user._id.toString(),
+        activationToken: user.activation.token
+      })
+    })
+    .then(user => {
+    
       console.log('entra en el then');
    
       res.render('users/login', {
         message: 'Check your email for activation'
       })
     })
+
     .catch((error) => {
 
       console.log('entra en el error', error);
@@ -171,31 +179,31 @@ module.exports.create = (req, res, next) => {
     .catch(next)
 }
 
-// module.exports.activateUser = (req, res, next) => {
-//   User.findOne({ _id: req.params.id, "activation.token": req.params.token })
-//     .then(user => {
-//       if (user) {
-//         user.activation.active = true;
+module.exports.activateUser = (req, res, next) => {
+  User.findOne({ _id: req.params.id, "activation.token": req.params.token })
+    .then(user => {
+      if (user) {
+        user.activation.active = true;
 
-//         user.save()
-//           .then(user => {
-//             res.render('users/login', {
-//               message: 'Your account has been activated, log in below!'
-//             })
-//           })
-//           .catch(e => next)
-//       } else {
-//         res.render('users/login', {
-//           error: {
-//             validation: {
-//               message: 'Invalid link'
-//             }
-//           }
-//         })
-//       }
-//     })
-//     .catch(e => next)
-// }
+        user.save()
+          .then(user => {
+            res.render('users/login', {
+              message: 'Your account has been activated, log in below!'
+            })
+          })
+          .catch(e => next)
+      } else {
+        res.render('users/login', {
+          error: {
+            validation: {
+              message: 'Invalid link'
+            }
+          }
+        })
+      }
+    })
+    .catch(e => next)
+}
 
 module.exports.logout = (req, res, next) => {
   req.session.destroy()
@@ -220,7 +228,6 @@ module.exports.createShelter = (req, res, next) => {
   res.render('users/shelter/create')
 }
 
-// ===========> ejemplo
 
 module.exports.beShelter = (req, res, next) => {
 
@@ -262,48 +269,3 @@ module.exports.beShelter = (req, res, next) => {
     .catch(error => next(error));
   }
 }
-// }
-
-// ===========> lo que intentamos con un update
-
-// module.exports.beShelter = (req, res, next) => {
-//   const body = req.body
-
-//   User.findByIdAndUpdate(req.params.id, body, { shelter: true })
-//     .then(user => {
-//       if (user) {
-//         console.log(user.shelter);
-//         res.redirect(`/users/${user._id}`)
-//       } else {
-//         res.redirect('/posts')
-//       }
-//     })
-//     .catch(next)
-// }
-
-
-// ===========> lo que hay en el post.controller
-
-// module.exports.beShelter = (req, res, next) => {
-//   const body = req.body
-
-//   // if (req.file) {
-//   //   body.image = req.file.path
-//   // }
-
-//   const user = req.user
-
-//   user.set(body)
-//   user.set(shelter)
-//   user.save()
-//     .then(() => {
-//       res.redirect(`/users/${user._id}`)
-//     })
-//     .catch((error) => {
-//       if (error instanceof mongoose.Error.ValidationError) {
-//         res.render("/shelter/create", { error: error.errors, post });
-//       } else {
-//         next(error);
-//       }
-//     })
-// }

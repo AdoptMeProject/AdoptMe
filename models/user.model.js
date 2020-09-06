@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     match: [EMAIL_PATTERN, "Email is invalid"],
   },
+  avatar: {
+    type: String,
+    default: 'https://res.cloudinary.com/ddjnw7lmb/image/upload/v1599303759/ironsummerpost/xjdrromxlewwb1euhdcv.png'
+  },
   password: {
     type: String,
     minlength: [4, "password min length is 4"]

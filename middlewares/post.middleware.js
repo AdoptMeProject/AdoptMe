@@ -1,6 +1,7 @@
 const Post = require('../models/post.model')
 
 module.exports.postOwner = (req, res, next) => {
+  console.log('qué pasa');
   Post.findById(req.params.id)
     .then(post => {
       if (post.author.toString() === req.currentUser.id.toString()) {

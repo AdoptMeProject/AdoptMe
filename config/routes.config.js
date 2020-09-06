@@ -18,10 +18,10 @@ router.post('/logout', session.isAuthenticated, usersController.logout)
 router.get('/users/new', session.isNotAuthenticated, usersController.new);
 router.post('/users', session.isNotAuthenticated, upload.single('avatar'), usersController.create);
 router.get('/users/:id', session.isAuthenticated, usersController.show);
+router.get('/users/:id/activate/:token', session.isNotAuthenticated, usersController.activateUser);
 router.get('/users/:id/edit', session.isAuthenticated, usersController.edit);
 router.post('/users/:id/edit', session.isAuthenticated, upload.single('avatar'), usersController.update);
 router.post('/users/:id/delete', session.isAuthenticated, usersController.delete);
-// router.get('/users/:id/activate/:token', session.isNotAuthenticated, usersController.activateUser);
 
 router.get('/shelter/create', session.isAuthenticated, usersController.createShelter);
 router.post('/shelter/create', session.isAuthenticated, usersController.beShelter);

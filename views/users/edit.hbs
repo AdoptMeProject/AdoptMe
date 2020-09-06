@@ -65,6 +65,48 @@
           {{/if}}
 
         </div>
+
+        <div class="form-group">
+
+          <label for="city">City</label>
+          <input rows="5" type="text" class="form-control {{#if error.city }}is-invalid{{/if}}" name="city"
+            id="city" placeholder="{{user.city}}"></input>
+      
+          {{#if error.city}}
+            <div class="invalid-feedback">
+              {{error.city.message}}
+            </div>
+          {{/if}}
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="address">Address</label>
+          <input rows="5" type="text" class="form-control {{#if error.address }}is-invalid{{/if}}" name="address"
+            id="address" placeholder="{{user.address}}"></input>
+      
+          {{#if error.address}}
+            <div class="invalid-feedback">
+              {{error.address.message}}
+            </div>
+          {{/if}}
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="phone">Phone</label>
+          <input rows="5" type="text" class="form-control {{#if error.phone }}is-invalid{{/if}}" name="phone"
+            id="phone" placeholder="{{user.phone}}"></input>
+      
+          {{#if error.phone}}
+            <div class="invalid-feedback">
+              {{error.phone.message}}
+            </div>
+          {{/if}}
+
+        </div>
       
         <div class="form-group">
 

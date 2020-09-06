@@ -28,9 +28,24 @@ const postSchema = new mongoose.Schema(
       enum: ['Dog', 'Cat', 'Others'],
       required: [true, 'Species is required'],
     },
+    breed: {
+      type: String, 
+    },
+    gender: {
+      type: String,
+      enum: ['Male', 'Female']
+    },
+    age: {
+      type: Number,
+      enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    },
+    size: {
+      type: String,
+      enum: ['Small', 'Medium', 'Big']
+    },
     image: {
       type: String,
-      // required: [true, 'Image is required'],
+      required: [true, 'Image is required'],
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,

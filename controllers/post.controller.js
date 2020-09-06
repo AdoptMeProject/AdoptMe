@@ -72,6 +72,7 @@ module.exports.new = (req, res, next) => {
 }
 
 module.exports.create = (req, res, next) => {
+
   const post = new Post({
     ...req.body,
     image: req.file ? req.file.path : undefined,
