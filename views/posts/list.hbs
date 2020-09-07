@@ -1,14 +1,37 @@
 <form>
   <h3>Shelter posts</h3>
-  <a href="/posts?search=Place">Place</a>
+    <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Place
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="/posts?search=Arroyomolinos">Arroyomolinos</a>
+      <a class="dropdown-item" href="/posts?search=Majadahonda">Majadahonda</a>
+      <a class="dropdown-item" href="/posts?search=Madrid">Madrid</a>
+    </div>
+  </div>
   <a href="/posts?search=Needs">Needs</a>
   <a href="/posts?search=Dog">Dogs</a>
   <a href="/posts?search=Cat">Cats</a>
-  <a href="/posts?search=Size">Size</a>
-  <a href="/posts?search=Gender">Gender</a>
-  {{!-- Gender y size necesita dropdown: male, female, big, small--}}
-
-
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Size
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="/posts?search=Small">Small</a>
+      <a class="dropdown-item" href="/posts?search=Medium">Medium</a>
+      <a class="dropdown-item" href="/posts?search=Big">Big</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Gender
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="/posts?search=Male">Male</a>
+      <a class="dropdown-item" href="/posts?search=Female">Female</a>
+    </div>
+  </div>
 </form>
 
 <div class="row">

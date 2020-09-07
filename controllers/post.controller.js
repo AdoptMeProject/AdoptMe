@@ -106,7 +106,10 @@ module.exports.list = (req, res, next) => {
       { name: new RegExp(req.query.search, "i") },
       { ['author.name']: new RegExp(req.query.search, "i") },
       { ['shelter.name']: new RegExp(req.query.search, "i") },
-      { species: new RegExp(req.query.search, "i") }
+      { species: new RegExp(req.query.search, "i") },
+      { size: new RegExp(req.query.search, "i") },
+      { gender: new RegExp(req.query.search, "i") },
+      { place: new RegExp(req.query.search, "i") },
     ]
   }
 

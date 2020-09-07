@@ -14,6 +14,11 @@
     {{/if}}
   </div>
 
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Urgent</label>
+  </div>
+
   <div class="form-group">
     <label for="breed">Breed</label>
     <input value="{{post.breed}}" name="breed" type="text" class="form-control {{#if error.name }}is-invalid{{/if}}" id="breed">
@@ -103,11 +108,11 @@
 
   <div class="form-group">
     <label for="place">Location</label>
-    <input value="{{post.author.place}}" placeholder="{{post.author.place}}" name="place" type="text" class="form-control {{#if error.place }}is-invalid{{/if}}">
+    <input placeholder="{{post.author.city}}" name="place" type="text" class="form-control {{#if error.city }}is-invalid{{/if}}">
 
-    {{#if error.place}}
+    {{#if error.city}}
       <div class="invalid-feedback">
-        {{error.place.message}}
+        {{error.city.message}}
       </div>
     {{/if}}
   </div>

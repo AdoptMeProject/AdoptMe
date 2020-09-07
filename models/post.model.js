@@ -28,6 +28,9 @@ const postSchema = new mongoose.Schema(
       enum: ['Dog', 'Cat', 'Others'],
       required: [true, 'Species is required'],
     },
+    urgent: {
+      type: Boolean,
+    },
     breed: {
       type: String, 
     },

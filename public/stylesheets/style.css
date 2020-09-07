@@ -2,6 +2,14 @@ body {
     font-family: 'Roboto';
     font-weight: 200;
   }
+
+body h1, h2, h3, h4, h5, h6 {
+  font-family: 'Permanent Marker', cursive;
+}
+
+body p, a {
+  font-family: 'Gayathri', sans-serif;
+}
   
   strong {
     font-weight: 500;
@@ -10,4 +18,229 @@ body {
   label {
     font-weight: 400;
   }
-  
+
+/* ======CAROUSEL======= */
+
+
+
+#carousel h2 {
+    font-size: 36px !important;
+    color: #FFFFFF;
+    font-weight: bold !important;
+}
+
+#carousel p {
+    font-size: 16px !important;
+    color: #FFFFFF;
+}
+
+#carousel a {
+    font-size: 14px !important;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.slides-container {
+    margin-top: -300px;
+}
+
+.slides-container a {
+    background: rgba(255,255,255,0.2);
+    font-weight: bold;
+    border: 1px solid #fff;
+    padding: 10px 20px;
+}
+
+.decoration-previous {
+    padding: 50px 25px;
+    border: 1px solid #34dea2;
+    background-color: #3af4b3 !important;
+    margin-right: 170px;
+    opacity: 100% !important;
+    z-index: 110;
+}
+
+.decoration-next {
+    padding: 50px 25px;
+    border: 1px solid #34dea2;
+    background-color: #3af4b3 !important;
+    margin-left: 170px;
+}
+
+/* ======SHELTERS SECTION======= */
+#go-shelters {
+  margin-top: 50px;
+  background-color: rgba(30, 147, 106, 0.5);
+}
+
+#shelters-container {
+  padding-left: 150px;
+  padding-top: 50px;
+  /* background-color: rgba(30, 147, 106, 0.5); */
+  /* height: 515px; */
+}
+#shelters-text {
+  width: 400px;
+  margin-bottom: 30px;
+}
+
+#info-shelters {
+  margin-bottom: 50px;
+}
+
+hr.hr-deco {
+  border: 3px solid rgba(30, 147, 106, 0.5);
+  border-radius: 3px;
+}
+
+#become-shelter-link h2 {
+margin-bottom: 25px;
+}
+
+/* #check-shelter-btn {
+  margin-left: 100px;
+} */
+
+.shelter-btns {
+  padding: 10px;
+  border: 1px solid rgb(37, 171, 146);
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px 0 #0F0F0E;
+  font-size: 20px;
+  background-color: rgb(46, 203, 174);
+  /* position: absolute; */
+  transition: .6s;
+  overflow: hidden;
+  text-decoration-style: none;
+}
+
+.shelter-btns:focus {
+  outline: none;
+}
+
+.shelter-btns:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(206, 215, 255, .5);
+  width: 60px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: .5s;
+  filter: blur(30px);
+  transform: translateX(-130px) skewX(-15deg);
+}
+
+.chanche-a a {
+  color: rgb(43, 108, 96);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.shelter-btns:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(206, 215, 255, .2);
+  width: 30px;
+  height: 100%;
+  left: 30px;
+  top: 0;
+  opacity: 0;
+  filter: blur(30px);
+  transform: translate(-100px) scaleX(-15deg);
+}
+
+.shelter-btns:hover {
+  background: rgb(124, 255, 231);
+  cursor: pointer;
+}
+
+.shelter-btns:hover:before {
+  transform: translateX(300px) skewX(-15deg);
+  opacity: .6;
+  transition: .4s;
+}
+
+.shelter-btns:hover:after {
+  transform: translateX(300px) skewX(-15deg);
+  opacity: 1;
+  transition: .7s;
+}
+
+
+
+/* ======WHAT DO WE DO====== */
+
+#description > h3 {
+  margin-top: 50px;
+}
+
+#description > div {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+
+.service-box {
+  font-size: 1.7em;
+  text-align: center;
+  border: 2px solid #eee;
+  border-radius: 20px;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 10px 0 #eee;
+  margin: 50px 5% 0 5%;
+  padding: 20px;
+  width: 40%;
+}
+
+.service-box img {
+  width: 125px;
+}
+
+/* ====POSTCARD IF URGENT */
+.urgent {
+  background-color: red;
+}
+
+/* ====FOOTER==== */
+
+
+#final {
+  padding: 50px 70px 50px 70px;
+  border-top: 4px solid #b7ff89;
+  background-color: #012d00;
+  line-height: 25px;
+}
+
+#final h3 {
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+#final ul {
+  list-style-type: none;
+}
+
+.footer-text li, a {
+  color: hsl(159, 100%, 70%);
+  padding: 10px;
+}
+
+.footer-text h2, h5 {
+  color: hsl(132, 69%, 51%);
+}
+
+footer {
+  background-color: #011a00;
+  color: #EEEEEE;
+  padding-left: 70px;
+}
+
+footer p {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: -1rem;
+  font-size: small;
+}

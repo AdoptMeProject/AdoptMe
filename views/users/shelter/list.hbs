@@ -1,0 +1,12 @@
+<div class="row">
+  {{#each users as |user|}}
+    <div class="col-xl-4 col-lg-6 col-sm-12 mb-4">
+      {{>users/shelter/usercard user=user }}
+    </div>
+  {{else}}
+    <p>
+      No shelters matching search: <i>{{search}}</i>.<br/>
+      <a href="/shelters/list">All shelters</a>
+    </p>
+  {{/each}}
+</div>

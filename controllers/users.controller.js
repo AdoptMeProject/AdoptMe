@@ -4,6 +4,8 @@ const mailer = require('../config/mailer.config');
 const passport = require('passport')
 const { postOwner } = require('../middlewares/post.middleware')
 
+
+// ======> LOGIN
 module.exports.login = (req, res, next) => {
   res.render('users/login')
 }
@@ -86,50 +88,10 @@ module.exports.doLogin = (req, res, next) => {
     .catch(next)
 }
 
+// ======> CREATE USER
+
 module.exports.new = (req, res, next) => {
   res.render('users/new')
-}
-
-module.exports.edit = (req, res, next) => {
-  User.findById(req.params.id)
-    .then(user => {
-      res.render('users/edit', { user })
-    })
-    .catch(next)
-}
-
-module.exports.update = (req, res, next) => {
-  const body = req.body
-
-  if (req.file) {
-    body.avatar = req.file.path
-  }
-
-  User.findByIdAndUpdate(req.params.id, body, { runValidators: true, new: true })
-    .then(user => {
-      if (user) {
-        res.redirect(`/users/${user._id}`)
-      } else {
-        res.redirect('/posts')
-      }
-    })
-    .catch(next)
-}
-
-module.exports.show = (req, res, next) => {
-  User.findById(req.params.id)
-    .populate({
-      path: "posts",
-      populate: "shelter"
-    })
-    .populate({
-      path: "shelterposts",
-      populate: "author"
-    })
-    .then(user => {
-      res.render('users/show', { user })
-    })
-    .catch(next)
 }
 
 module.exports.create = (req, res, next) => {
@@ -211,6 +173,82 @@ module.exports.logout = (req, res, next) => {
   res.redirect('/login')
 }
 
+// ======> USER HOME
+module.exports.usersHome = (req, res, next) => {
+  res.render('users/home')
+}
+
+// ======> SHELTER LIST
+
+module.exports.sheltersList = (req, res, next) => {
+  const criteria = {}
+
+  if (req.query.search) {
+    res.locals.search = req.query.search
+    criteria['$or'] = [
+      { name: new RegExp(req.query.search, "i") },
+      // { ['author.name']: new RegExp(req.query.search, "i") },
+      // { ['shelter.name']: new RegExp(req.query.search, "i") },
+      { species: new RegExp(req.query.search, "i") }
+    ]
+  }
+
+  User.find(criteria)
+    // .populate('author')
+    // .populate('shelter')
+    // .populate('likes')
+    .then(users => {
+      res.render('users/shelter/list', { users })
+    })
+    .catch(next)
+}
+
+// ======> EDIT USER
+module.exports.edit = (req, res, next) => {
+  User.findById(req.params.id)
+    .then(user => {
+      res.render('users/edit', { user })
+    })
+    .catch(next)
+}
+
+module.exports.update = (req, res, next) => {
+  const body = req.body
+
+  if (req.file) {
+    body.avatar = req.file.path
+  }
+
+  User.findByIdAndUpdate(req.params.id, body, { runValidators: true, new: true })
+    .then(user => {
+      if (user) {
+        res.redirect(`/users/${user._id}`)
+      } else {
+        res.redirect('/posts')
+      }
+    })
+    .catch(next)
+}
+
+// ======> USER DETAIL
+module.exports.show = (req, res, next) => {
+  User.findById(req.params.id)
+    .populate({
+      path: "posts",
+      populate: "shelter"
+    })
+    .populate({
+      path: "shelterposts",
+      populate: "author"
+    })
+    .then(user => {
+      res.render('users/show', { user })
+    })
+    .catch(next)
+}
+
+// ======> DELETE USER
+
 module.exports.delete = (req, res, next) => {
   if (req.params.id.toString() === req.currentUser.id.toString()) {
     req.currentUser.remove()
@@ -223,6 +261,8 @@ module.exports.delete = (req, res, next) => {
     res.redirect('/posts')
   }
 }
+
+// ======> USER CHANGE TO SHELTER
 
 module.exports.createShelter = (req, res, next) => {
   res.render('users/shelter/create')
@@ -269,3 +309,4 @@ module.exports.beShelter = (req, res, next) => {
     .catch(error => next(error));
   }
 }
+
