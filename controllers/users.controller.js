@@ -187,16 +187,11 @@ module.exports.sheltersList = (req, res, next) => {
     res.locals.search = req.query.search
     criteria['$or'] = [
       { name: new RegExp(req.query.search, "i") },
-      // { ['author.name']: new RegExp(req.query.search, "i") },
-      // { ['shelter.name']: new RegExp(req.query.search, "i") },
       { species: new RegExp(req.query.search, "i") }
     ]
   }
 
   User.find(criteria)
-    // .populate('author')
-    // .populate('shelter')
-    // .populate('likes')
     .then(users => {
       res.render('users/shelter/list', { users })
     })

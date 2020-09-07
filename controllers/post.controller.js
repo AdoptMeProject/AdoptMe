@@ -1,6 +1,5 @@
 const Post = require("../models/post.model")
 const User = require("../models/user.model")
-const Like = require("../models/like.model")
 const mongoose = require('mongoose')
 
 // GET /posts/:id
@@ -8,16 +7,6 @@ module.exports.show = (req, res, next) => {
   Post.findById(req.params.id)
     .populate('author')
     .populate('shelter')
-    .populate('likes')
-    .populate({
-      path: 'comments',
-      options: {
-        sort: {
-          createdAt: -1
-        }
-      },
-      populate: 'user'
-    })
     .then(post => {
       res.render('posts/show', { post })
     })
@@ -116,35 +105,10 @@ module.exports.list = (req, res, next) => {
   Post.find(criteria)
     .populate('author')
     .populate('shelter')
-    .populate('likes')
     .then(posts => {
       res.render('posts/list', { posts })
     })
     .catch(next)
-}
-
-module.exports.like = (req, res, next) => {
-  const params = { post: req.params.id, user: req.currentUser._id };
-
-  Like.findOne(params)
-    .then(like => {
-      if (like) {
-        Like.findByIdAndRemove(like._id)
-          .then(() => {
-            res.json({ like: -1 });
-          })
-          .catch(next);
-      } else {
-        const newLike = new Like(params);
-
-        newLike.save()
-          .then(() => {
-            res.json({ like: 1 });
-          })
-          .catch(next);
-      }
-    })
-    .catch(next);
 }
 
 module.exports.filter = (req, res, next) => {

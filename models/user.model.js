@@ -1,7 +1,4 @@
 const post = require("./post.model")
-const Comment = require("./comment.model")
-const Like = require("./like.model")
-//Like --> cambiar por Me interesa o algo así y se guarda en el perfil
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 
@@ -100,8 +97,6 @@ userSchema.pre('save', function (next) {
 userSchema.post('remove', function (next) {
   Promise.all([
     post.deleteMany({ author: this._id }),
-    Like.deleteMany({ user: this._id }),
-    Comment.deleteMany({ user: this._id })
   ])
     .then(next)
 })

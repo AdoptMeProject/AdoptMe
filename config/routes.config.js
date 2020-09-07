@@ -4,7 +4,6 @@ const session = require('../middlewares/session.middleware')
 const postsMiddleware = require('../middlewares/post.middleware')
 const postController = require('../controllers/post.controller')
 const usersController = require('../controllers/users.controller')
-const commentsController = require('../controllers/comments.controller')
 const upload = require('../config/multer.config');
 const passport = require('passport')
 
@@ -39,10 +38,6 @@ router.get('/posts/:id', session.isAuthenticated, postController.show)
 router.get('/posts/:id/edit', session.isAuthenticated, postsMiddleware.postOwner, postController.edit)
 router.post('/posts/:id/delete', session.isAuthenticated, postsMiddleware.postOwner, postController.delete)
 router.post('/posts/:id/edit', session.isAuthenticated, postsMiddleware.postOwner, upload.single('image'), postController.update)
-router.post('/posts/:id/like', session.isAuthenticated, postController.like)
-
-router.post('/comments', session.isAuthenticated, commentsController.create)
-router.post('/comments/:id/delete', session.isAuthenticated, commentsController.delete)
 
 router.get('/', (req, res) => res.redirect('/posts'))
 

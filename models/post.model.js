@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const Comment = require('./comment.model')
-const Like = require('./like.model')
 
 const postSchema = new mongoose.Schema(
   {
@@ -63,27 +61,6 @@ const postSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-postSchema.virtual("comments", {
-  ref: "Comment",
-  localField: "_id",
-  foreignField: "post",
-  justOne: false,
-});
-
-postSchema.virtual("likes", {
-  ref: "Like",
-  localField: "_id",
-  foreignField: "post",
-  count: true
-});
-
-postSchema.post('remove', function (next) {
-  Promise.all([
-    Like.deleteMany({ post: this._id }),
-    Comment.deleteMany({ post: this._id })
-  ])
-    .then(next)
-})
 
 const Post = mongoose.model("post", postSchema);
 

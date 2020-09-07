@@ -19,33 +19,4 @@
     </div>
   {{/ifEquals}}
 
-  <div id="comments">
-    <h2>Comments</h2>
-
-    {{>posts/newcomment}}
-
-    {{#each post.comments as |comment|}}
-      <div class="border-bottom mb-3 py-3">
-        <p>{{comment.text}}</p>
-
-        <small>
-          Author:
-          <a href="/users/{{comment.user._id}}">
-            <img src="{{comment.user.avatar}}" class="rounded-circle" width="20"/>
-            {{comment.user.name}}
-          </a>
-        </small>
-
-        <small class="d-block">Date: {{date comment.createdAt}}</small>
-
-        {{#ifEquals comment.user.email ../currentUser.email}}
-          <form action="/comments/{{comment._id}}/delete" method="POST">
-            <button type="submit" class="mt-1 btn btn-sm btn-danger">
-              <i class="fa fa-trash"></i>
-            </button>
-          </form>
-        {{/ifEquals}}
-      </div>
-    {{/each}}
-  </div>
 </article>

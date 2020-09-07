@@ -3,11 +3,8 @@ require("../config/db.config");
 const mongoose = require('mongoose');
 
 const User = require('../models/user.model')
-const Comment = require('../models/comment.model')
 const Post = require('../models/post.model')
-const Like = require('../models/like.model');
 const faker = require('faker');
-const { create } = require('../models/comment.model');
 
 const users = [
   { name: 'ALBA Protectora', email: faker.internet.email(), avatar: 'https://img.miwuki.com/p/AD9GVA/250', password: '1234', shelter: true, address: 'ALBA Protectora, Camino del Corral, 60, 28816 Camarma de Esteruelas, Madrid', city: 'Madrid', phone: faker.phone.phoneNumber(), bio: faker.lorem.paragraph(), activation: { active: true } },
@@ -59,31 +56,10 @@ function createPost(user) {
   return post.save()
 }
 
-function createComment(post) {
-  const comment = new Comment({
-    text: faker.lorem.paragraph(),
-    user: createdUsers[Math.floor(Math.random() * createdUsers.length)]._id,
-    post: post._id
-  })
-
-  return comment.save()
-}
-
-function createLike(post ) {
-  const like = new Like({
-    user: createdUsers[Math.floor(Math.random() * createdUsers.length)]._id,
-    post: post._id
-  })
-
-  return like.save()
-}
-
 function restoreDatabase() {
   return Promise.all([
     User.deleteMany({}),
-    Comment.deleteMany({}),
     Post.deleteMany({}),
-    Like.deleteMany({})
   ])
 }
 
@@ -100,12 +76,6 @@ function seeds() {
             console.log(`${user.name} added to the database`);
             for (let i = 0; i < 3; i++) {
               createPost(user)
-                .then(post => {
-                  for (let j = 0; j < 10; j++) {
-                    createComment(post)
-                    createLike(post)
-                  }
-                })
             }
           })
           .catch(e => console.log('Error: ', e))
