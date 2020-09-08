@@ -68,7 +68,7 @@ module.exports.doLogin = (req, res, next) => {
               res.render('users/login', {
                 error: {
                   email: {
-                    message: 'user not found'
+                    message: 'User not found'
                   }
                 }
               })
@@ -78,7 +78,7 @@ module.exports.doLogin = (req, res, next) => {
         res.render("users/login", {
           error: {
             email: {
-              message: "user not found",
+              message: "User not found",
             },
           },
 
@@ -130,7 +130,7 @@ module.exports.create = (req, res, next) => {
           user,
           error: {
             email: {
-              message: 'user already exists'
+              message: 'The user already exists'
             }
           }
         });

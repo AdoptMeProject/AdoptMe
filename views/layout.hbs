@@ -11,6 +11,7 @@
       <link rel='stylesheet' href='/stylesheets/style.css' />
       <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Gayathri:wght@400;700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -19,11 +20,9 @@
         {{>partials/navbar}}
       {{/if}}
 
-      {{!-- {{>partials/navbarHome}} --}}
-
-      <main >
+      {{!-- <main> --}}
         {{{body}}}  
-      </main>
+      {{!-- </main> --}}
 
       {{#if currentUser}}
         {{>partials/footer}}

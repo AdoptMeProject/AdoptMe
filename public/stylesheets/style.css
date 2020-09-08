@@ -1,27 +1,190 @@
+body{
+  height: 100%;
+}
+
+html {
+  height: 100%;
+} 
+
 body {
     font-family: 'Roboto';
     font-weight: 200;
-  }
+}
 
 body h1, h2, h3, h4, h5, h6 {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Handlee', cursive;
 }
 
 body p, a {
   font-family: 'Gayathri', sans-serif;
 }
   
-  strong {
-    font-weight: 500;
+strong {
+  font-weight: 500;
+}
+
+label {
+  font-weight: 400;
+}
+
+/* ======LOGIN======= */
+
+#login-view {
+  background-color: #011a00;
+  height: 100%;
+}
+
+.login-container {
+  width: 800px;
+  height: 600px;
+  margin-left: 300px;
+  padding-top: 100px;
+  /* background-color: #eee; */
+  /* border: 2px solid black; */
+}
+
+.login-form-container {
+  width: 500px;
+  height: 350px;
+  margin-left: 150px;
+  margin-top: 10px;
+  padding: 50px 30px;
+  border: 2px solid #011a00;
+  /* background-color: #034f02; */
+  background: linear-gradient(-45deg, #0f2f65, #23cdbc, #1fb580, #0b4116);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  border-radius: 20px;
+  -webkit-box-shadow: 8px 5px 56px 24px rgba(0,0,0,0.75);
+  -moz-box-shadow: 8px 5px 56px 24px rgba(0,0,0,0.75);
+  box-shadow: 8px 5px 56px 24px rgba(0,0,0,0.75);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  label {
-    font-weight: 400;
+  50% {
+    background-position: 100% 50%;
   }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
-/* ======CAROUSEL======= */
+.email-pass {
+  color: #083c2e;
+  font-weight: bolder;
+}
 
+.login-btns {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 100px;
+}
 
+.login-btns button {
+  color: #99ffdb;
+  font-weight: bold;
+}
+
+.login-btns a {
+  color: #99ffdb;
+  font-weight: bold;
+}
+
+.login-btn {
+  margin-right: 10px;
+  border: 1px solid #1d825e;
+  background-color: #1c7d5b;
+}
+
+.login-btn:hover {
+  border: 1px solid #3af4b3;
+  background-color: #34dea2;
+}
+
+.login-google-btn {
+  margin-right: 10px;
+  border: 1px solid #176c4e;
+  background-color: #1c7d5b;
+} 
+
+.login-google-btn a {
+  padding-top: 10px;
+}
+
+.login-google-btn:hover {
+  border: 1px solid #3af4b3;
+  background-color: #34dea2;
+}
+
+.register-link {
+  margin-left: 20px;
+  color: #bbffe7;
+}
+
+.register-link a {
+  text-decoration: none;
+  color: #0c5c40;
+}
+
+.register-link a:hover {
+  text-decoration: none;
+  color: #072d20;
+}
+
+/* ======REGISTER======= */
+
+#register-view {
+  background-color: #011a00;
+  height: 100%;
+}
+
+.test {
+  border: 2px solid #011a00;
+  padding: 20px;
+  background: linear-gradient(-45deg, #1fb580, #198a46, #198a46, #1fb580);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  border-radius: 20px;
+  -webkit-box-shadow: 8px 5px 56px 24px rgba(0,0,0,0.75);
+  -moz-box-shadow: 8px 5px 56px 24px rgba(0,0,0,0.75);
+  box-shadow: 8px 5px 56px 24px rgba(0,0,0,0.75);
+}
+
+.test label {
+  color: #083c2e;
+  font-weight: bolder;
+}
+
+.test input {
+  border: #34dea2;
+  background-color: #b3ffd5;
+}
+
+.bio-deco {
+  border: #34dea2;
+  background-color: #b3ffd5;
+}
+
+.submit-div {
+  margin-left: 500px;
+}
+
+.submit-user {
+  padding: 10px;
+  border: 1px solid #108046;
+  background-color: #1cc497;
+  border-radius: 10px;
+}
+
+.submit-user:hover {
+  border: 1px solid #3af4b3;
+  background-color: #5cffc6;
+}
+
+/* ======HOME - CAROUSEL======= */
 
 #carousel h2 {
     font-size: 36px !important;
@@ -67,7 +230,7 @@ body p, a {
     margin-left: 170px;
 }
 
-/* ======SHELTERS SECTION======= */
+/* ======HOME - SHELTERS SECTION======= */
 #go-shelters {
   margin-top: 50px;
   background-color: rgba(30, 147, 106, 0.5);
@@ -171,7 +334,7 @@ margin-bottom: 25px;
 
 
 
-/* ======WHAT DO WE DO====== */
+/* ======HOME - WHAT DO WE DO====== */
 
 #description > h3 {
   margin-top: 50px;
@@ -198,6 +361,7 @@ margin-bottom: 25px;
 .service-box img {
   width: 125px;
 }
+/* =======ALL POSTS======= */
 
 /* ====POSTCARD IF URGENT */
 .urgent {
