@@ -1,3 +1,5 @@
+
+
 <article class="container">
 
   <div class="row">
@@ -65,9 +67,17 @@
 
   </div>
 
-  <div>
+  <div id="map"></div>
 
-    <h2 class="my-4">Posts</h2>
+<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCP9mRiFIygvhTnPa7LOMo2clF-k2jINJ8&q={{user.locationTest}}" allowfullscreen>
+  {{!-- src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCP9mRiFIygvhTnPa7LOMo2clF-k2jINJ8&q=ALBA+Protectora,Madrid+Spain" allowfullscreen> --}}
+</iframe>
+
+  <div>
 
     <div class="row">
 
@@ -82,3 +92,12 @@
   </div>
 
 </article>
+{{user}}
+<script>
+  
+  var userN=decodeURIComponent("{{{user.locationMap}}}");
+  console.log(userN)
+  var newUSer =JSON.parse(userN);
+  console.log(`Hola ${newUser}`)
+  window.user = newUser;
+</script>
