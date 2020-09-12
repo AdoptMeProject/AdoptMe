@@ -1,7 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand mr-5" href="/home">AdoptMe</a>
+<nav class="navbar navbar-expand-lg nav-deco">
 
-  <ul class="navbar-nav mr-auto">
+  <a class="navbar-brand mr-5" href="/home">AdoptMe</a>
+  {{!-- aquí arriba irá el logo-frase --}}
+
+  <ul class="navbar-nav mr-auto first-links">
+
     <li class="nav-item active">
       <a class="nav-link" href="/home">Home</a>
     </li>
@@ -11,20 +14,23 @@
     <li class="nav-item active">
       <a class="nav-link" href="/shelters/list">Shelters</a>
     </li>
+
   </ul>
 
   {{#if currentUser.shelter}}
-
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">🐶</li>
-    </ul>
-
+      <ul class="navbar-nav mr-auto">
+        <div class="shelter-dog">
+          <li class="nav-item active">🐶</li>
+        </div>
+      </ul>
     {{else}}
 
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/shelter/create">Become a shelter</a>
-      </li>
+      <div class="shelter-no-dog">
+        <li class="nav-item active">
+          <a class="nav-link" href="/shelter/create">Become a shelter</a>
+        </li>
+      </div>
     </ul>
 
   {{/if}}
@@ -32,26 +38,28 @@
 
   {{#if currentUser.shelter}}
     <div class="d-flex align-items-center">
-      <a class="btn btn-primary text-white mr-3" href="/posts/new">
-        <i class="fa fa-plus mr-1"></i>
+      <a class="btn new-post-btn mr-3" href="/posts/new">
+        <i class="fas fa-paw"></i>
         New post
       </a>
     </div>
   {{/if}}
     
-    <form class="form-inline my-lg-0 mr-2" action="/posts">
+    <form class="form-inline my-lg-0 mr-2 search" action="/posts">
       <input value="{{search}}" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
 
     <div class="btn-group">
-      <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+
+      <button type="button" class="btn user-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
         <img src="{{currentUser.avatar}}" width="20" class="mr-2 rounded-circle"/>
         {{currentUser.name}}
       </button>
 
-      <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="/users/{{currentUser._id}}">Profile</a>
+      <div class="dropdown-menu dropdown-menu-right user-dropdown">
+
+        <a class="dropdown-item user-dropd-item" href="/users/{{currentUser._id}}">Profile</a>
         <div class="dropdown-divider"></div>
 
         <form action="/logout" method="POST">
@@ -60,7 +68,11 @@
             Logout
           </button>
         </form>
+
       </div>
+
     </div>
+
   </div>
+
 </nav>

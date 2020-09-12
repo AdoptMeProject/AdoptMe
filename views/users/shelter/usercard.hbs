@@ -1,21 +1,23 @@
 {{#if user.shelter}}
-    <div class="card mb-3" style="max-width: 540px;">
+    <div class="card mb-3" style="max-width: 540px; height:100%">
         <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="{{user.avatar}}" class="card-img" alt="User avatar">
+            <div class="full-width">
+                <img src="{{user.avatar}}" class="card-img center" alt="User avatar" width="100%">
             </div>
-            <div class="col-md-8">
+            <div class="">
                 <div class="card-body">
                     <h5 class="card-title">{{user.name}}</h5>
                     <p class="card-text">{{user.bio}}</p>
-                    <p class="card-text"><small class="text-muted">Shelter: 🐶🐱</small></p>
-                    <p class="card-text"><small class="text-muted">{{user.city}}</small></p>
+                    {{!-- <p class="card-text"><small class="text-muted">Shelter: 🐶🐱</small></p> --}}
+                    
                 </div>
             </div>
-            <div class="card-footer">
-                <small class="text-muted">{{date user.createdAt}}</small>
+            <hr class="white">
+            <div class="metadata">
+                <p class="card-text white"><small>{{user.city}}</small>
+                <small>{{date user.createdAt}}</small></p>
             </div>
-            <a href="/users/{{user._id}}" class="text-dark">Check shelter</a>
+            <a href="/users/{{user._id}}" class="white-button">Check shelter</a>
         </div>
     </div>
 {{/if}}

@@ -1,6 +1,6 @@
 {{#if post.urgent}}
 
-  <div class="card urgent">
+  <div class="card urgent ">
     <img src="{{post.image}}" class="card-img-top" alt="...">
 
     <div class="card-body">
@@ -23,29 +23,109 @@
           Location: {{post.author.city}}
         {{/if}}
       </p>
+
+      <div class="card-text card-text-date">
+        <small>{{date post.createdAt}}</small>
+      </div>
       
     </div>
 
-    <div>
+    <div id="features">
       <p class="card-text">
-        {{#if post.author.name}}
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Specie: {{post.species}}</li>
-          <li class="list-group-item">Age: {{post.age}} years</li>
-          <li class="list-group-item">Gender: {{post.gender}}</li>
-          <li class="list-group-item">Size: {{post.size}}</li>
-          <li class="list-group-item">Breed: {{post.breed}}</li>
-        </ul>
-        {{/if}}
+        <div class="features">
+          <ul>
+            {{!-- <li class="">Specie: {{post.species}}</li> --}}
+            <div class="features-div">
+              <li class="">Age: {{post.age}} years</li>
+              <li class="">Gender: {{post.gender}}</li>
+               <li class="">Size: {{post.size}}</li>
+              <li class="">Breed: {{post.breed}}</li>
+            </div>
+           
+          </ul>
+        </div>
       </p>
     </div>
 
-    <div class="card-footer">
-      <small class="text-muted">{{date post.createdAt}}</small>
+    <button type="button" class="btn adopt-me-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"><i class="fas fa-exclamation-triangle"></i>Urgent adoption!<i class="fas fa-exclamation-triangle"></i></button>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Adoption form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form>
+
+            <div class="form-group">
+              <label for="name" class="col-form-label">Name</label>
+              <input type="text" class="form-control" id="form-user-name">
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Where do you live?</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">How much time will the animal be alone at home?</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Is it the first time that you adopt an animal?</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Do you have any other pets?</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Are there any toddlers at home?</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                I've read and accept the terms and conditions of use. (Just give me the goddamm puppy)
+              </label>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Send message</button>
+        </div>
+
+      </div>
+
     </div>
+  </div>
   </div>
 
 {{else}}
+
+
+  {{!-- <div class="test-card">
+    <h1 class="post-name">{{post.name}}</h1>
+    <div id="post-content" class="hide">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p>Shelter: <a href="/users/{{post.author.id}}">{{post.author.name}}</a></p>
+    </div>
+    <button type="button" class="btn normal-adopt-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Adopt me!</button>
+  </div> --}}
 
   <div class="card">
     <img src="{{post.image}}" class="card-img-top" alt="...">
@@ -71,23 +151,30 @@
         {{/if}}
       </p>
 
+      <div class="card-text card-text-date">
+        <small class="text-muted">{{date post.createdAt}}</small>
+      </div>
+
     </div>
 
     <div>
       <p class="card-text">
-        {{#if post.author.name}}
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Specie: {{post.species}}</li>
-          <li class="list-group-item">Age: {{post.age}} years</li>
-          <li class="list-group-item">Gender: {{post.gender}}</li>
-          <li class="list-group-item">Size: {{post.size}}</li>
-          <li class="list-group-item">Breed: {{post.breed}}</li>
-        </ul>
-        {{/if}}
+        <div class="features">
+          <ul>
+            {{!-- <li class="">Specie: {{post.species}}</li> --}}
+            <div class="features-div">
+              <li class="">Age: {{post.age}} years</li>
+              <li class="">Gender: {{post.gender}}</li>
+               <li class="">Size: {{post.size}}</li>
+              <li class="">Breed: {{post.breed}}</li>
+            </div>
+           
+          </ul>
+        </div>
       </p>
     </div>
 
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Adopt me!</button>
+  <button type="button" class="btn normal-adopt-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Adopt me!</button>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -154,10 +241,6 @@
     </div>
   </div>
 
-
-    <div class="card-footer">
-      <small class="text-muted">{{date post.createdAt}}</small>
-    </div>
   </div>
 
 {{/if}}

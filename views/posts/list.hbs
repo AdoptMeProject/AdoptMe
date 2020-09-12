@@ -1,48 +1,69 @@
-<form>
-  <h3>Shelter posts</h3>
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Place
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/posts?search=Arroyomolinos">Arroyomolinos</a>
-      <a class="dropdown-item" href="/posts?search=Majadahonda">Majadahonda</a>
-      <a class="dropdown-item" href="/posts?search=Madrid">Madrid</a>
+<section id="all-posts">
+  <header class="header-posts">
+    <div>
+      <div class="header-lines">
+        <h1>Adopt a pet</h1>
+        <hr class="h1-hr">
+        <h1>Save a life</h1>
+        <hr class="h1-hr">
+        <h1>Gain a friend</h1>
+        <hr class="h1-hr">
+      </div>
     </div>
-  </div>
-  <a href="/posts?search=Needs">Needs</a>
-  <a href="/posts?search=Dog">Dogs</a>
-  <a href="/posts?search=Cat">Cats</a>
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Size
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/posts?search=Small">Small</a>
-      <a class="dropdown-item" href="/posts?search=Medium">Medium</a>
-      <a class="dropdown-item" href="/posts?search=Big">Big</a>
-    </div>
-  </div>
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Gender
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/posts?search=Male">Male</a>
-      <a class="dropdown-item" href="/posts?search=Female">Female</a>
-    </div>
-  </div>
-</form>
+  </header>
 
-<div class="row">
-  {{#each posts as |post|}}
-    <div class="col-xl-4 col-lg-6 col-sm-12 mb-4">
-      {{>posts/postcard post=post }}
+  <form>
+    <h1>Shelter posts</h1>
+    <div class="filter-flex">
+      <div class="dropdown">
+
+        <button class="btn filter-btns dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-map-marked-alt"></i>Place
+        </button>
+        <div class="dropdown-menu posts-dropdown" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/posts?search=Arroyomolinos">Arroyomolinos</a>
+          <a class="dropdown-item" href="/posts?search=Madrid">Madrid</a>
+          <a class="dropdown-item" href="/posts?search=Majadahonda">Majadahonda</a>
+          <a class="dropdown-item" href="/posts?search=Leganés">Leganés</a>
+        </div>
+      </div>
+
+        <a class="filter-btns-a" href="/posts?search=Urgent"><i class="fas fa-exclamation-triangle"></i>Urgent</a>
+        <a class="filter-btns-a" href="/posts?search=Dog"><i class="fas fa-dog"></i>Dogs</a>
+        <a class="filter-btns-a" href="/posts?search=Cat"><i class="fas fa-cat"></i>Cats</a>
+
+      <div class="dropdown">
+        <button class="btn filter-btns dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Size
+        </button>
+        <div class="dropdown-menu posts-dropdown" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/posts?search=Small"><i class="fas fa-dog"></i>Small</a>
+          <a class="dropdown-item" href="/posts?search=Medium"><i class="fas fa-dog fa-lg"></i>Medium</a>
+          <a class="dropdown-item" href="/posts?search=Big"><i class="fas fa-dog fa-2x"></i>Big</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="btn filter-btns dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Gender
+        </button>
+        <div class="dropdown-menu posts-dropdown" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/posts?search=Male"><i class="fas fa-mars fa-lg"></i>Male</a>
+          <a class="dropdown-item" href="/posts?search=Female"><i class="fas fa-venus fa-lg"></i>Female</a>
+        </div>
+      </div>
     </div>
-  {{else}}
-    <p>
-      No posts matching search: <i>{{search}}</i>.<br/>
-      <a href="/posts">All posts</a>
-    </p>
-  {{/each}}
-</div>
+  </form>
+
+  <div class="row">
+    {{#each posts as |post|}}
+      <div class="col-xl-4 col-lg-6 col-sm-12 mb-4 remove-margin">
+        {{>posts/postcard post=post }}
+      </div>
+    {{else}}
+      <p>
+        No posts matching search: <i>{{search}}</i>.<br/>
+        <a href="/posts">All posts</a>
+      </p>
+    {{/each}}
+  </div>
+</section>

@@ -48,6 +48,16 @@
   </div>
 
   <div>
+    <iframe
+      width="600"
+      height="450"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCP9mRiFIygvhTnPa7LOMo2clF-k2jINJ8&q={{user.locationTest}}" class="map-frame" allowfullscreen>
+      {{!-- src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCP9mRiFIygvhTnPa7LOMo2clF-k2jINJ8&q=ALBA+Protectora,Madrid+Spain" allowfullscreen> --}}
+    </iframe>
+  </div>
+
+  {{!-- <div>
 
     {{#if user.shelter}}
 
@@ -65,19 +75,11 @@
 
     {{/if}}
 
-  </div>
-
-  <div id="map"></div>
-
-<iframe
-  width="600"
-  height="450"
-  frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCP9mRiFIygvhTnPa7LOMo2clF-k2jINJ8&q={{user.locationTest}}" allowfullscreen>
-  {{!-- src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCP9mRiFIygvhTnPa7LOMo2clF-k2jINJ8&q=ALBA+Protectora,Madrid+Spain" allowfullscreen> --}}
-</iframe>
+  </div> --}}
 
   <div>
+
+    <h2 class="my-4">Shelter posts</h2>
 
     <div class="row">
 
@@ -92,12 +94,11 @@
   </div>
 
 </article>
-{{user}}
-<script>
-  
+
+{{!-- <script>
   var userN=decodeURIComponent("{{{user.locationMap}}}");
   console.log(userN)
   var newUSer =JSON.parse(userN);
   console.log(`Hola ${newUser}`)
   window.user = newUser;
-</script>
+</script> --}}

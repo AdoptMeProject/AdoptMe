@@ -14,7 +14,6 @@ function initMap() {
             lng: -3.693
         }
     });
-    console.log()
     if (window.user) {
         console.log("hola")
         console.log(window.user)
