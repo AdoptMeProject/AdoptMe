@@ -244,6 +244,7 @@ label {
   box-shadow: 8px 5px 56px 24px rgba(0, 0, 0, 0.75);
 }
 
+
 .test label {
   color: #083c2e;
   font-weight: bolder;
@@ -275,6 +276,33 @@ label {
   background-color: #5cffc6;
 }
 
+/* ====POST NEW==== */
+
+.test-post-new {
+  border: 2px solid #308f66;
+  padding: 20px;
+  background: linear-gradient(-45deg, #0f2f65, #23cdbc, #1fb580, #0b4116);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+
+.test-post-new label {
+  color: #083c2e;
+  font-weight: bolder;
+}
+
+.test-post-new input {
+  border: #34dea2;
+  background-color: #dcffec;
+}
+
+.post-new-h1 h1 {
+  text-align-last: center;
+  margin-top: 10px;
+}
 /* ======HOME - CAROUSEL======= */
 
 #carousel h2 {
@@ -561,6 +589,15 @@ hr.h1-hr {
   background-color: #d0fce8;
 } */
 
+/* =======USER PROFILE======= */
+
+#user-profile {
+  background-color: #fbfffd;
+}
+
+.user-profile-card {
+  background-color: #26d0b1;
+}
 /* =======POST CARD======= */
 
 .test-card {
@@ -794,6 +831,10 @@ h4 {
   padding: 25px;
 }
 
+.legal{
+  margin-bottom: -20px;
+}
+
 .row {
   justify-content: space-between;
   margin-top: 15px;
@@ -880,11 +921,8 @@ footer p {
 
 .white-button:hover {
   text-decoration: none;
-
   opacity: 0.8;
   color: #105449;
-
-
 }
 
 .center {
@@ -893,4 +931,19 @@ footer p {
 
 .full-width {
   width: 100%;
+}
+
+.card-img-top-post-detail {
+  width: 100%;
+  /* margin-left: 220px; */
+}
+
+@media (min-width: 992px)
+.container {
+    max-width: 300px;
+}
+
+.post-detail {
+  margin-top: 10px;
+  width: 700px !important;
 }

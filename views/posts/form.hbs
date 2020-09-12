@@ -1,136 +1,141 @@
-{{#if post}}
-  <form action="/posts/{{post.id}}/edit" method="POST" enctype="multipart/form-data">
-{{else}}
-  <form action="/posts" method="POST" enctype="multipart/form-data">
-{{/if}}
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input value="{{post.name}}" name="name" type="text" class="form-control {{#if error.name }}is-invalid{{/if}}" id="name">
-
-    {{#if error.name}}
-      <div class="invalid-feedback">
-        {{error.name.message}}
-      </div>
+<section id="user-detail">
+  <article class="container test-post-new">
+    {{#if post}}
+      <form action="/posts/{{post.id}}/edit" method="POST" enctype="multipart/form-data">
+    {{else}}
+      <form action="/posts" method="POST" enctype="multipart/form-data">
     {{/if}}
-  </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input value="{{post.name}}" name="name" type="text" class="form-control {{#if error.name }}is-invalid{{/if}}" id="name">
 
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Urgent</label>
-  </div>
-
-  <div class="form-group">
-    <label for="breed">Breed</label>
-    <input value="{{post.breed}}" name="breed" type="text" class="form-control {{#if error.name }}is-invalid{{/if}}" id="breed">
-
-    {{#if error.breed}}
-      <div class="invalid-feedback">
-        {{error.breed.message}}
+        {{#if error.name}}
+          <div class="invalid-feedback">
+            {{error.name.message}}
+          </div>
+        {{/if}}
       </div>
-    {{/if}}
-  </div>
 
-
-  <div class="form-group">
-    <label for="gender">Gender</label>
-    <select class="form-control {{#if error.gender }}is-invalid{{/if}}" name="gender">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-    </select>
-    {{#if error.gender}}
-      <div class="invalid-feedback">
-        {{error.gender.message}}
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Urgent</label>
       </div>
-    {{/if}}
-  </div>
 
-  <div class="form-group">
-    <label for="age">Age (in years)</label>
-    <select class="form-control {{#if error.age }}is-invalid{{/if}}" name="age">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-    </select>
-    {{#if error.age}}
-      <div class="invalid-feedback">
-        {{error.age.message}}
+      <div class="form-group">
+        <label for="breed">Breed</label>
+        <input value="{{post.breed}}" name="breed" type="text" class="form-control {{#if error.name }}is-invalid{{/if}}" id="breed">
+
+        {{#if error.breed}}
+          <div class="invalid-feedback">
+            {{error.breed.message}}
+          </div>
+        {{/if}}
       </div>
-    {{/if}}
-  </div>
 
-   <div class="form-group">
-    <label for="size">Size</label>
-    <select class="form-control {{#if error.size }}is-invalid{{/if}}" name="size">
-        <option value="Small">Small</option>
-        <option value="Medium">Medium</option>
-        <option value="Big">Big</option>
-    </select>
-    {{#if error.size}}
-      <div class="invalid-feedback">
-        {{error.size.message}}
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select class="form-control {{#if error.gender }}is-invalid{{/if}}" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        {{#if error.gender}}
+          <div class="invalid-feedback">
+            {{error.gender.message}}
+          </div>
+        {{/if}}
       </div>
-    {{/if}}
-  </div>
 
-  <div class="form-group">
-    <label for="github">Image</label>
-    <input value="{{project.image}}" type="file" class="form-control-file {{#if error.image }}is-invalid{{/if}}" id="image" name="image">
-
-    {{#if error.image}}
-      <div class="invalid-feedback">
-        {{error.image.message}}
+      <div class="form-group">
+        <label for="age">Age (in years)</label>
+        <select class="form-control {{#if error.age }}is-invalid{{/if}}" name="age">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+        </select>
+        {{#if error.age}}
+          <div class="invalid-feedback">
+            {{error.age.message}}
+          </div>
+        {{/if}}
       </div>
-    {{/if}}
-  </div>
 
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea rows="5" type="text" class="form-control {{#if error.description }}is-invalid{{/if}}" name="description" id="description">{{post.description}}</textarea>
-
-    {{#if error.description}}
-      <div class="invalid-feedback">
-        {{error.description.message}}
+      <div class="form-group">
+        <label for="size">Size</label>
+        <select class="form-control {{#if error.size }}is-invalid{{/if}}" name="size">
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Big">Big</option>
+        </select>
+        {{#if error.size}}
+          <div class="invalid-feedback">
+            {{error.size.message}}
+          </div>
+        {{/if}}
       </div>
-    {{/if}}
-  </div>
 
-  <div class="form-group">
-    <label for="place">Location</label>
-    <input placeholder="{{post.author.city}}" name="place" type="text" class="form-control {{#if error.city }}is-invalid{{/if}}">
+      <div class="form-group">
+        <label for="github">Image</label>
+        <input value="{{project.image}}" type="file" class="form-control-file {{#if error.image }}is-invalid{{/if}}" id="image" name="image">
 
-    {{#if error.city}}
-      <div class="invalid-feedback">
-        {{error.city.message}}
+        {{#if error.image}}
+          <div class="invalid-feedback">
+            {{error.image.message}}
+          </div>
+        {{/if}}
       </div>
-    {{/if}}
-  </div>
 
-  <div class="form-group">
-    <label for="species">Species</label>
-    <select class="form-control {{#if error.species }}is-invalid{{/if}}" name="species">
-        <option value="Dog">Dog</option>
-        <option value="Cat">Cat</option>
-        <option value="Others">Others</option>
-    </select>
-    {{#if error.species}}
-      <div class="invalid-feedback">
-        {{error.species.message}}
+      <div class="form-group bio-deco">
+        <label for="description">Description</label>
+        <textarea rows="5" type="text" class="form-control {{#if error.description }}is-invalid{{/if}}" name="description" id="description">{{post.description}}</textarea>
+
+        {{#if error.description}}
+          <div class="invalid-feedback">
+            {{error.description.message}}
+          </div>
+        {{/if}}
       </div>
-    {{/if}}
-  </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      <div class="form-group">
+        <label for="place">Location</label>
+        <input placeholder="{{post.author.city}}" name="place" type="text" class="form-control {{#if error.city }}is-invalid{{/if}}">
 
+        {{#if error.city}}
+          <div class="invalid-feedback">
+            {{error.city.message}}
+          </div>
+        {{/if}}
+      </div>
+
+      <div class="form-group">
+        <label for="species">Species</label>
+        <select class="form-control {{#if error.species }}is-invalid{{/if}}" name="species">
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Others">Others</option>
+        </select>
+        {{#if error.species}}
+          <div class="invalid-feedback">
+            {{error.species.message}}
+          </div>
+        {{/if}}
+      </div>
+
+    <div class="submit-div">
+      <button type="submit" class="btn submit-user">Submit</button>
+    </div>
+    </form>
+  </article>
+</section>
