@@ -2,7 +2,7 @@
 <section id="user-profile">
   <article class="container">
 
-    <div class="row">
+    <div class="row user-profile-card">
 
       <div class="col-2">
         <img class="w-100 rounded-circle" src="{{user.avatar}}" />
@@ -25,19 +25,22 @@
 
         {{#ifEquals currentUser.email user.email}}
 
-          <div>
+          <div id="profile-edit-delete">
+            <div class="profile-edit-btn">
+              <a class="" href="/users/{{currentUser._id}}/edit">
+                <i class="fa fa-edit mr-2"></i>
+                Edit
+              </a>
+            </div>
 
-            <a class="btn btn-secondary" href="/users/{{currentUser._id}}/edit">
-              <i class="fa fa-edit mr-2"></i>
-              Edit
-            </a>
-
-            <form action="/users/{{currentUser._id}}/delete" method="POST" class="mt-2">
-              <button type="submit" class="btn btn-danger">
-                <i class="fa fa-trash mr-2"></i>
-                Remove account
-              </button>
-            </form>
+            <div class="profile-delete-btn">
+              <form action="/users/{{currentUser._id}}/delete" method="POST" class="mt-2">
+                <button type="submit" class="btn btn-danger">
+                  <i class="fa fa-trash mr-2"></i>
+                  Remove account
+                </button>
+              </form>
+            </div>
 
           </div>
 
@@ -47,17 +50,15 @@
 
     </div>
 
-    <div>
       <iframe
         width="600"
         height="450"
         frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCP9mRiFIygvhTnPa7LOMo2clF-k2jINJ8&q={{user.locationTest}}" class="map-frame" allowfullscreen>
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCP9mRiFIygvhTnPa7LOMo2clF-k2jINJ8&q={{user.locationTest}}" class="map-frame map" allowfullscreen>
         {{!-- src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCP9mRiFIygvhTnPa7LOMo2clF-k2jINJ8&q=ALBA+Protectora,Madrid+Spain" allowfullscreen> --}}
       </iframe>
-    </div>
 
-    <div>
+    <div id="profile-posts">
 
       <h2 class="my-4">Shelter posts</h2>
 

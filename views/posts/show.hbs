@@ -4,18 +4,19 @@
   </div>
 
   {{#ifEquals post.author.email currentUser.email}}
-    <div class="mb-3">
-      <a href="/posts/{{post._id}}/edit" class="btn btn-secondary">
-        <i class="fa fa-cog"></i>
-        Edit
-      </a>
-
-   <form action="/posts/{{post._id}}/delete" method="POST">   
-        <button type="submit" class="btn btn-danger">
-          <i class="fa fa-trash"></i>
-          Delete
-        </button>
-    </form>
+    <div id="post-edit-delete" class="mb-3">
+      <div>
+        <a href="/posts/{{post._id}}/edit" class="btn btn-info">
+          <i class="fa fa-cog"></i>
+          Edit
+        </a>
+      </div>
+      <form action="/posts/{{post._id}}/delete" method="POST">   
+          <button type="submit" class="btn btn-danger">
+            <i class="fa fa-trash"></i>
+            Delete
+          </button>
+        </form>
     </div>
   {{/ifEquals}}
 

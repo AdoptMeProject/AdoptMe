@@ -1,10 +1,17 @@
 {{#if post.urgent}}
 
-  <div class="card urgent ">
-    <img src="{{post.image}}" class="card-img-top-post-detail" alt="...">
+  <div class="card urgent" >
+    <div style="height: 250px; overflow: hidden">
+ <img src="{{post.image}}" class="card-img-top-post-detail" alt="...">
+    </div>
+   
 
     <div class="card-body">
-      <h5 class="card-title"><a href="/posts/{{post._id}}" class="text-dark">{{post.name}}</a></h5>
+
+      <div>
+        <h5 class="card-title force-font"><a href="/posts/{{post._id}}" class="text-dark">{{post.name}}</a></h5>
+        <p>Specie: {{post.species}}</p>
+      </div>
 
       {{#if showDescription}}
         <p class="card-text">
@@ -12,15 +19,15 @@
         </p>
       {{/if}}
       
-      <p class="card-text">
+      <p class="card-text posts-shelter-name">
         {{#if post.author.name}}
-          Shelter: <a href="/users/{{post.author.id}}">{{post.author.name}}</a>
+          <b>Shelter:</b> <a href="/users/{{post.author.id}}">{{post.author.name}}</a>
         {{/if}}
       </p>
 
       <p class="card-text">
         {{#if post.author.name}}
-          Location: {{post.author.city}}
+          <b>Location:</b> {{post.author.city}}
         {{/if}}
       </p>
 
@@ -36,10 +43,10 @@
           <ul>
             {{!-- <li class="">Specie: {{post.species}}</li> --}}
             <div class="features-div">
-              <li class="">Age: {{post.age}} years</li>
-              <li class="">Gender: {{post.gender}}</li>
-               <li class="">Size: {{post.size}}</li>
-              <li class="">Breed: {{post.breed}}</li>
+              <li class=""><b>Age:</b> {{post.age}} years</li>
+              <li class=""><b>Gender:</b> {{post.gender}}</li>
+              <li class=""><b>Size: </b>{{post.size}}</li>
+              <li class=""><b>Breed:</b> {{post.breed}}</li>
             </div>
            
           </ul>
@@ -105,7 +112,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Send message</button>
         </div>
 
@@ -117,21 +124,15 @@
 
 {{else}}
 
-
-  {{!-- <div class="test-card">
-    <h1 class="post-name">{{post.name}}</h1>
-    <div id="post-content" class="hide">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      <p>Shelter: <a href="/users/{{post.author.id}}">{{post.author.name}}</a></p>
+    <div class="card">
+      <div style="height: 250px; overflow: hidden">
+      <img src="{{post.image}}" class="card-img-top" alt="...">
     </div>
-    <button type="button" class="btn normal-adopt-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Adopt me!</button>
-  </div> --}}
-
-  <div class="card">
-    <img src="{{post.image}}" class="card-img-top" alt="...">
-
     <div class="card-body">
-      <h5 class="card-title"><a href="/posts/{{post._id}}" class="text-dark">{{post.name}}</a></h5>
+      <div>
+        <h5 class="card-title force-font"><a href="/posts/{{post._id}}" class="text-dark">{{post.name}}</a></h5>
+        <p>Specie: {{post.species}}</p>
+      </div>
 
       {{#if showDescription}}
         <p class="card-text">
@@ -139,7 +140,7 @@
         </p>
       {{/if}}
       
-      <p class="card-text">
+      <p class="card-text posts-shelter-name">
         {{#if post.author.name}}
           Shelter: <a href="/users/{{post.author.id}}">{{post.author.name}}</a>
         {{/if}}
@@ -152,7 +153,7 @@
       </p>
 
       <div class="card-text card-text-date">
-        <small class="text-muted">{{date post.createdAt}}</small>
+        <small>{{date post.createdAt}}</small>
       </div>
 
     </div>
@@ -198,7 +199,7 @@
 
             <div class="form-group">
               <label for="message-text" class="col-form-label">Where do you live?</label>
-              <textarea class="form-control" id="message-text"></textarea>
+              <textarea class="form-control text-area" id="message-text"></textarea>
             </div>
 
             <div class="form-group">
@@ -232,8 +233,8 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Send message</button>
+          <button type="button" class="adoption-btns" data-dismiss="modal">Close</button>
+          <button type="button" class="adoption-btns " data-dismiss="modal">Send message</button>
         </div>
 
       </div>
